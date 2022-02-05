@@ -37,15 +37,10 @@ const App = () => {
   
   return (
     <Layout>
-        <Header title="Join Game" onClick={() => {console.log('fish');}}/>
       <div className="circle">
-
-        {slides[0]}
-        {/* <LandingCircle /> */}
-        {/* <HowToCircle image={howto1} buttonText={"Click Me"} description="First, have your friends scan the QR code" /> */}
+        {slides[index]}
       </div>
     </Layout>
-
       
   );
 }

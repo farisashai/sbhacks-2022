@@ -1,10 +1,10 @@
 import Header from "../Header";
-
-const Layout = ({ children}) => {
-    <div className="background">
-        {/* <Header title="Join Game" onClick={() => {console.log('fish');}}/> */}
+import './style.less'
+const Layout = ({ children }) => {
+    return <div className="background">
+        <Header title="Join Game" onClick={() => {console.log('fish');}}/>
         {children}
     </div>
 }
 
-export  default Layout
+export default Layout

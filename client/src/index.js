@@ -11,8 +11,8 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        {/* <Route exact path="/steven" element={<Steven />} /> */}
         <Route exact path="/" element={<App />} />
+        <Route exact path="/steven" element={<Steven />} />
       </Routes>
     </Router>
   </React.StrictMode>,

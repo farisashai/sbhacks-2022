@@ -17,7 +17,6 @@ const Header = ({title, onClick}) => {
       <img src={scribble} alt="" />
     </div>
   </div>
-  )
 }
 
 export default Header

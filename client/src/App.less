@@ -1,4 +1,5 @@
 @import '~antd/dist/antd.less';
+@import './vars.less';
 
 .App {
   background-image: url('./assets/lines.svg');
@@ -18,37 +19,11 @@
 .circle {
   width: 718px;
   height: 718px;
-  background-color: #eefe85ce;
+  background-color: @yellow;
   border-radius: 50%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.circle h3 {
-  font-size: 30px;
-  font-weight: 400;
-}
-
-.circle h1 {
-  font-size: 70px;
-  font-weight: 600;
-  padding: 0px 55px 0px 55px;
-}
-
-.create {
-  display: flex;
-  flex-direction: row;
-  background: url('./assets/create-circle.svg') no-repeat center;
-  margin: -3rem;
-  padding: 3rem;
-}
-
-.create button {
-  background: none;
-  border: none;
-  font-weight: 600;
-  font-size: 28px;
 }

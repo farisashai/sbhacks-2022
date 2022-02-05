@@ -1,17 +1,30 @@
 import './App.less';
 import Header from './components/Header'
-import arrow from "./assets/arrow.svg"
+import LandingCircle from './components/Circle/LandingCircle'
+import HowToCircle from './components/Circle/HowToCircle';
+import howto1 from './assets/howto1.svg'
+import howto2 from './assets/howto1.svg'
+import howto3 from './assets/howto1.svg'
+
+const howToSlides = [
+  {
+    image: howto1,
+    description: 'blah blah blah',
+    buttonText: 'Click me'
+  },
+  {
+
+  }
+]
+
+
 function App() {
   return (
     <div className="App">
-      <Header />
+      <Header title="Join Game" onClick={() => {console.log('fish');}}/>
       <div className="circle">
-        <h3>Upload, quiz, study</h3>
-        <h1>Turn your notes into a game</h1>
-        <div className="create">
-          <button>Create</button>
-		  <img src={arrow} alt="arrow"></img>
-        </div>
+        {/* <LandingCircle /> */}
+        <HowToCircle image={howto1} buttonText={"Click Me"} description="First, have your friends scan the QR code" />
       </div>
     </div>
   );

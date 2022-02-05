@@ -1,6 +1,6 @@
 import './App.less';
 import Header from './components/Header'
-
+import arrow from "./assets/arrow.svg"
 function App() {
   return (
     <div className="App">
@@ -8,7 +8,10 @@ function App() {
       <div className="circle">
         <h3>Upload, quiz, study</h3>
         <h1>Turn your notes into a game</h1>
-        <button>Create</button>
+        <div className="create">
+          <button>Create</button>
+		  <img src={arrow} alt="arrow"></img>
+        </div>
       </div>
     </div>
   );

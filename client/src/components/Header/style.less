@@ -1,0 +1,54 @@
+.header {
+  display: flex;
+  flex-flow: row wrap;
+  height: 6rem;
+  justify-content: space-between;
+  align-items: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 2rem;
+}
+
+.header-left {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+
+    h1 {
+		font-weight: 600;
+		font-size: 56px;
+        margin: 0;
+    }
+}
+
+.header-right {
+    position: relative;
+    width: 250px;
+    height: 72px;
+
+    img {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .join-game {
+        position: absolute;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        border: none;
+        background-color: #0000;
+        top: 18px;
+        right: 70px;
+
+        font-size: 27px;
+        text-align: center;
+        letter-spacing: -0.05em;
+        color: #000000;
+    }
+}

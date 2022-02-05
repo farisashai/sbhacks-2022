@@ -11,6 +11,8 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  letter-spacing: -0.05em;
 }
 
 .circle {
@@ -22,14 +24,31 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .circle h3 {
-  size: 30px;
+  font-size: 30px;
   font-weight: 400;
 }
 
 .circle h1 {
-  size: 78px;
+  font-size: 70px;
   font-weight: 600;
+  padding: 0px 55px 0px 55px;
+}
+
+.create {
+  display: flex;
+  flex-direction: row;
+  background: url('./assets/create-circle.svg') no-repeat center;
+  margin: -3rem;
+  padding: 3rem;
+}
+
+.create button {
+  background: none;
+  border: none;
+  font-weight: 600;
+  font-size: 28px;
 }

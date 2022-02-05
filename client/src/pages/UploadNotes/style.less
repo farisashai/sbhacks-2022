@@ -6,8 +6,18 @@
   background-color: #ffa8b2c2;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+
+  h1 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 78.468px;
+    line-height: 88px;
+    text-align: center;
+    letter-spacing: -0.05em;
+  }
 }
 
 .button-group {
@@ -30,11 +40,14 @@
 .upload-btn {
   background-color: #0000;
   border: none;
+  transition: 0.3s ease-in-out;
+  margin-bottom: 3rem;
   svg {
     width: 10rem;
     height: 10rem;
   }
+
   :hover {
-    background-color: rgba(221, 221, 221, 0.21);
+    color: rgba(84, 84, 84, 0.648);
   }
 }

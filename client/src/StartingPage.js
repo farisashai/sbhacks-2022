@@ -5,7 +5,7 @@ import Header from './components/Header'
 function StartingPage() {
   return (
     <div className="StartingPage">
-      <Header title="Join Game" onClick={() => {console.log('fish');}}/>
+      <Header title="4/6 Players" onClick={() => {console.log('fish');}}/>
       
     </div>
   );

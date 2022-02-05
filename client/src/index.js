@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import App from './App';
-import WebsocketServer from './containers/WebsocketServer';
+import Steven from './containers/Steven';
 
 import './index.css';
 
@@ -11,9 +11,8 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route exact path="/websocket-server" element={<WebsocketServer />} />
-        <Route exact path="/websocket-client" element={<App />} />
-        <Route path="/" element={<App />} />
+        {/* <Route exact path="/steven" element={<Steven />} /> */}
+        <Route exact path="/" element={<App />} />
       </Routes>
     </Router>
   </React.StrictMode>,

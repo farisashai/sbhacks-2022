@@ -5,8 +5,7 @@ import Layout from 'containers/Layout'
 import { UploadOutlined } from '@ant-design/icons';
 import { useState } from 'react'
 
-const UploadNotes = ({ setIndex }) => {
-  // const [file, setFile] = useState([])
+const UploadNotes = ({ setIndex, back, next }) => {
   const [fileList, setFileList] = useState([])
 
   return <Layout>
@@ -38,9 +37,9 @@ const UploadNotes = ({ setIndex }) => {
 
 
         <div className="button-group">
-              <a href="/">Back</a>
+              <button onClick={back}>Back</button>
               <CircleButton
-                  onclick={() => setIndex(index => index + 1)} 
+                  onclick={next} 
                   text="Start"
               />
           </div>

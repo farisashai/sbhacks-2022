@@ -6,14 +6,18 @@ const Steven = () => {
 
     useEffect(() => {
         setConnection(io("http://localhost:4000"));
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        if (connection) {
+            connection.onAny((event, ...args) => {
+                console.log(`got ${event}, ${args}`);
+            });
+        }
+    }, [connection])
 
     const [event, setEvent] = useState('');
     const [args, setArgs] = useState('');
-
-    connection.onAny((event, ...args) => {
-        console.log(`got ${event}`);
-    });
 
     return (
         <div>

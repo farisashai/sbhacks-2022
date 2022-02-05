@@ -1,0 +1,29 @@
+@keyframes bounce {
+    0% {
+        transform: rotate(-5.18deg);
+    }
+
+    100% {
+        transform: rotate(6deg);
+    }
+}
+.player {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        line-height: 112.5%;
+
+        text-align: center;
+        letter-spacing: -0.05em;
+
+        color: #000000;
+        animation: bounce 1s alternate-reverse infinite ease-in-out;
+    }
+}

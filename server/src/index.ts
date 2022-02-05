@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Socket, Server } from "socket.io";
-import { ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData, handleConnection } from "./socket";
+import { ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData, ConnectionHandler } from "./socket";
 
 const express = require('express');
 const app = express();
@@ -19,7 +19,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 io.on('connection', (socket: Socket) => {
-  handleConnection(io, socket);
+  new ConnectionHandler(io, socket).handleConnection();
 });
 
 server.listen(4000, () => {

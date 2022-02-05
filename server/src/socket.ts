@@ -41,26 +41,60 @@ interface Game {
 
 const games = new Map<string, Game>();
 
-const handleCreateGame: (io: Server, socket: Socket) => ServerToClientEvents["gameCreated"] = (io: Server, socket: Socket) => () => {
-    console.log("handleCreateGame");
+export class ConnectionHandler {
+    private io: Server;
+    private socket: Socket;
 
-    socket.emit('gameCreated', 'deez nuts');
-};
+    constructor(io: Server, socket: Socket) {
+        this.io = io;
+        this.socket = socket;
+    }
 
-export const handleConnection = (io: Server, socket: Socket) => {
-    socket.on('createGame', handleCreateGame(io, socket));
+    // Host to Server Events
 
+    private handleCreateGame: ClientToServerEvents["createGame"] = () => {
+        console.log("handleCreateGame");
+    
+        this.socket.emit('Ack: handleCreateGame', '');
+    };
 
-    console.log('a user connected');
+    private handleStartGame: ClientToServerEvents["startGame"] = () => {
+        console.log("handleStartGame");
+    
+        this.socket.emit('Ack: handleStartGame', '');
+    };
 
-    // socket.broadcast.emit('hi');
+    private handleSkipQuestion: ClientToServerEvents["skipQuestion"] = () => {
+        console.log("handleSkipQuestion");
+    
+        this.socket.emit('Ack: handleSkipQuestion', '');
+    };
 
-    // socket.on('chat message', (msg) => {
-    //     console.log(msg);
-    //     io.emit('chat message', msg);
-    // });
+    // Player to Server Events
 
-    // socket.on('disconnect', () => {
-    //     console.log('user disconnected');
-    // });
-};
+    private handleJoinGame: ClientToServerEvents["joinGame"] = () => {
+        console.log("handleJoinGame");
+    
+        this.socket.emit('Ack: handleJoinGame', '');
+    };
+
+    private handleAnswerQuestion: ClientToServerEvents["answerQuestion"] = () => {
+        console.log("handleAnswerQuestion");
+    
+        this.socket.emit('Ack: handleAnswerQuestion', '');
+    };
+
+    public handleConnection = () => {
+        
+        // Client to Server Events
+        this.socket.on('answerQuestion', this.handleAnswerQuestion);
+        this.socket.on('createGame', this.handleCreateGame);
+        this.socket.on('joinGame', this.handleJoinGame);
+        this.socket.on('skipQuestion', this.handleSkipQuestion);
+        this.socket.on('startGame', this.handleStartGame);
+
+        
+    
+        console.log('a user connected');
+    };
+}

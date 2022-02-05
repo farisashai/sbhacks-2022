@@ -12,11 +12,12 @@ const Header = ({title, onClick}) => {
     </div>
     <div className="header-right">
       <button className="join-game" onClick={onClick}>
-        { title }
+        {title}
       </button>
       <img src={scribble} alt="" />
     </div>
   </div>
-};
+  )
+}
 
-export default Header;
+export default Header

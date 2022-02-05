@@ -1,12 +1,12 @@
 import CircleButton from '../CircleButton'
 import './style.less'
-const LandingCircle = ({setIndex}) => {
+const LandingCircle = ({onclick}) => {
     return (
         <div className='landing-circle'>
             <h3>Upload, quiz, study</h3>
             <h1>Turn your notes into a game</h1>
             <CircleButton 
-                onclick={() => setIndex(index => index + 1)} 
+                onclick={onclick} 
                 text="Create"
             />
         </div>

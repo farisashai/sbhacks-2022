@@ -1,4 +1,4 @@
-import Header from "../Header";
+import Header from "../../components/Header";
 import './style.less'
 const Layout = ({ children }) => {
     return <div className="background">

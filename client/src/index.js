@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import App from './App';
+import Home from './pages/Home';
+import UploadNotes from './pages/UploadNotes'
 import Steven from './containers/Steven';
 
 import './index.css';
@@ -11,7 +12,8 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route exact path="/" element={<App />} />
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/upload" element={<UploadNotes />} />
         <Route exact path="/steven" element={<Steven />} />
       </Routes>
     </Router>

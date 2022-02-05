@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from 'pages/Home';
 import UploadNotes from 'pages/UploadNotes'
 import Lobby from 'pages/Lobby'
+import Join from 'pages/Join'
 import Steven from 'containers/Steven';
 
 import './index.css';
@@ -20,6 +21,7 @@ ReactDOM.render(
         next={() => window.location.href = '/lobby'}
         />
         } />
+        <Route exact path="/join" element={<Join />} />
         <Route exact path="/lobby" element={<Lobby />} />
         <Route exact path="/steven" element={<Steven />} />
       </Routes>

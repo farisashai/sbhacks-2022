@@ -1,11 +1,11 @@
 import './style.less';
-import LandingCircle from '../..//components/Circle/LandingCircle'
-import HowToCircle from '../../components/Circle/HowToCircle';
-import howto1 from '../../assets/howto1.svg'
-import howto2 from '../../assets/howto2.svg'
-import howto3 from '../../assets/howto3.svg'
+import LandingCircle from 'components/Circle/LandingCircle'
+import HowToCircle from 'components/Circle/HowToCircle';
+import howto1 from 'assets/howto1.svg'
+import howto2 from 'assets/howto2.svg'
+import howto3 from 'assets/howto3.svg'
 import { useState } from 'react'
-import Layout from '../../containers/Layout';
+import Layout from 'containers/Layout';
 
 const Home = () => {
   const [index, setIndex] = useState(0);

@@ -43,6 +43,8 @@ const games = new Map<string, Game>();
 
 const handleCreateGame: (io: Server, socket: Socket) => ServerToClientEvents["gameCreated"] = (io: Server, socket: Socket) => () => {
     console.log("handleCreateGame");
+
+    socket.emit('gameCreated', 'deez nuts');
 };
 
 export const handleConnection = (io: Server, socket: Socket) => {

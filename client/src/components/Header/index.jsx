@@ -1,6 +1,6 @@
 import './style.less'
-import pen from '../../assets/pen.svg'
-import scribble from '../../assets/scribble.svg'
+import pen from 'assets/pen.svg'
+import scribble from 'assets/scribble.svg'
 
 const Header = ({title, onClick}) => {
   return <div className="header">

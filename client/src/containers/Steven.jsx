@@ -1,4 +1,4 @@
-import Steven from '../components/Steven';
+import Steven from 'components/Steven';
 
 const StevenContainer = () => {
     return (<Steven />);

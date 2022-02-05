@@ -1,5 +1,5 @@
 import './style.less'
-import CircleButton from '../CircleButton'
+import CircleButton from 'components/Circle/CircleButton'
 
 const HowToCircle = ({image, description, buttonText, back, next}) => {
     return (

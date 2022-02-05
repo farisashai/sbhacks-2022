@@ -11,6 +11,10 @@ const Steven = () => {
     const [event, setEvent] = useState('');
     const [args, setArgs] = useState('');
 
+    connection.onAny((event, ...args) => {
+        console.log(`got ${event}`);
+    });
+
     return (
         <div>
             <h1>socket.io client connection test</h1>

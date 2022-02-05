@@ -1,5 +1,5 @@
 import React from 'react';
-import arrow from '../../../assets/arrow.svg'
+import arrow from 'assets/arrow.svg'
 import './style.less'
 
 const CircleButton = ({text, onclick}) => {

@@ -1,7 +1,7 @@
 import './style.less';
 import {Upload} from "antd"
-import CircleButton from '../../components/Circle/CircleButton'
-import Layout from '../../containers/Layout'
+import CircleButton from 'components/Circle/CircleButton'
+import Layout from 'containers/Layout'
 import { UploadOutlined } from '@ant-design/icons';
 import { useState } from 'react'
 

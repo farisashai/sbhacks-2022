@@ -1,7 +1,7 @@
 import './style.less';
-import Header from '../../components/Header';
-// import CircleButton from '../../components/CircleButton';
-import PlayerIcons from '../../components/PlayerIcons';
+import Header from 'components/Header';
+import CircleButton from 'components/Circle/CircleButton';
+import PlayerIcons from 'components/PlayerIcons';
 
 function Lobby() {
   return (
@@ -21,7 +21,7 @@ function Lobby() {
         <img alt="qr code" />
         <h1>ABCD</h1>
         <h3>Room Code</h3>
-        {/* <CircleButton text="Start" /> */}
+        <CircleButton text="Start" />
       </div>
     </div>
   );

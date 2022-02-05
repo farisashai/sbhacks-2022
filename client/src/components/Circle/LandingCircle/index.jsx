@@ -1,4 +1,4 @@
-import CircleButton from '../CircleButton'
+import CircleButton from 'components/Circle/CircleButton'
 import './style.less'
 const LandingCircle = ({onclick}) => {
     return (

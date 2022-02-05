@@ -13,15 +13,21 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/upload" element={
-        <UploadNotes
-        back={() => window.location.href = '/'}
-        next={() => window.location.href = '/lobby'}
-        />
+        <Route exact path="/" element={
+          <Home />
         } />
-        <Route exact path="/lobby" element={<Lobby />} />
-        <Route exact path="/steven" element={<Steven />} />
+        <Route exact path="/upload" element={
+          <UploadNotes
+          back={() => window.location.href = '/'}
+          next={() => window.location.href = '/lobby'}
+          />
+        } />
+        <Route exact path="/lobby" element={
+          <Lobby />
+        } />
+        <Route exact path="/steven" element={
+          <Steven />
+        } />
       </Routes>
     </Router>
   </React.StrictMode>,

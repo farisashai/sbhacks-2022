@@ -10,17 +10,8 @@ import './style.less'
 
 const PlayerIcons = ({index = -1, name = 'icon2', onclick}) => {
   const icons = [
-    questionIcon,
-    icon1, icon2, icon3, icon4, icon5, icon6
+    questionIcon, icon1, icon2, icon3, icon4, icon5, icon6
   ]
-  //   'questionIcon': questionIcon,
-  //   'icon1': icon1,
-  //   'icon2': icon2,
-  //   'icon3': icon3,
-  //   'icon4': icon4,
-  //   'icon5': icon5,
-  //   'icon6': icon6
-  // }
   return (
     <div className="player">
         <img src={icons[index + 1]} alt="icon"></img>

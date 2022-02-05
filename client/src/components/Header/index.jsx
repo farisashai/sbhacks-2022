@@ -4,7 +4,7 @@ import scribble from 'assets/scribble.svg'
 
 const Header = ({title, onClick}) => {
   return <div className="header">
-    <div className="header-left">
+    <div onClick className="header-left">
       <img src={pen} alt="pencil" />
       <h1>Quizlash</h1>
     </div>

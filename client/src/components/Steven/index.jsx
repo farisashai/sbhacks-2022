@@ -1,21 +1,8 @@
-import { useEffect, useState } from 'react';
-import { io } from 'socket.io-client';
+import { useState } from 'react';
+
+import {sendMessage} from 'utils/socketHandler';
 
 const Steven = () => {
-    const [connection, setConnection] = useState();
-
-    useEffect(() => {
-        setConnection(io("http://localhost:4000"));
-    }, []);
-
-    useEffect(() => {
-        if (connection) {
-            connection.onAny((event, ...args) => {
-                console.log(`got ${event}, ${args}`);
-            });
-        }
-    }, [connection])
-
     const [event, setEvent] = useState('');
     const [args, setArgs] = useState('');
 
@@ -28,7 +15,7 @@ const Steven = () => {
             <input type="text" value={args} onChange={(e) => setArgs(e.target.value)}/>
             <br />
             <br />
-            <button type='button' onClick={() => connection.emit(event, args)}>Send Message</button>
+            <button type='button' onClick={() => sendMessage(event, args)}>Send Message</button>
         </div>
     );
 }

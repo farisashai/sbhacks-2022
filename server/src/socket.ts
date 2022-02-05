@@ -83,7 +83,7 @@ export class ConnectionHandler {
     
         this.socket.emit('Ack: handleAnswerQuestion', '');
     };
-
+    
     public handleConnection = () => {
         
         // Client to Server Events
@@ -92,8 +92,6 @@ export class ConnectionHandler {
         this.socket.on('joinGame', this.handleJoinGame);
         this.socket.on('skipQuestion', this.handleSkipQuestion);
         this.socket.on('startGame', this.handleStartGame);
-
-        
     
         console.log('a user connected');
     };

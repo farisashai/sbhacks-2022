@@ -36,5 +36,9 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@imaginary-cloud/prettier-config": "^1.0.0",
+    "prettier": "^2.5.1"
+  },
+  "prettier": "@imaginary-cloud/prettier-config"
 }

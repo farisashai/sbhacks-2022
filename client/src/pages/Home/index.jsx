@@ -1,5 +1,5 @@
 import './style.less';
-import LandingCircle from '../../components/Circle/LandingCircle'
+import LandingCircle from '../..//components/Circle/LandingCircle'
 import HowToCircle from '../../components/Circle/HowToCircle';
 import howto1 from '../../assets/howto1.svg'
 import howto2 from '../../assets/howto2.svg'

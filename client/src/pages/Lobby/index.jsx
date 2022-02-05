@@ -1,6 +1,6 @@
 import './style.less';
 import Header from '../../components/Header';
-import CircleButton from '../../components/CircleButton';
+// import CircleButton from '../../components/CircleButton';
 import PlayerIcons from '../../components/PlayerIcons';
 
 function Lobby() {
@@ -21,7 +21,7 @@ function Lobby() {
         <img alt="qr code" />
         <h1>ABCD</h1>
         <h3>Room Code</h3>
-        <CircleButton text="Start" />
+        {/* <CircleButton text="Start" /> */}
       </div>
     </div>
   );

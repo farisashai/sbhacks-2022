@@ -42,7 +42,7 @@ const UploadNotes = () => {
           <button onClick={() => navigate('/')}>Back</button>
           <CircleButton
             onclick={() => {
-              if (fileList.length == 0) {
+              if (fileList.length === 0) {
                 notification.open({
                   message: 'Please upload a file to start.',
                   // description:

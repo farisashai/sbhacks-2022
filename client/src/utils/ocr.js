@@ -222,7 +222,7 @@ export const ocr = (text = '') => {
   let i = 0;
   while (i < 5) {
     const randNum = Math.floor(Math.random() * numQuestions);
-    if (!(randNum in questionNumList)) {
+    if (!(questionNumList.includes(randNum))) {
       i += 1;
       questionNumList.push(randNum);
     }
@@ -235,7 +235,7 @@ export const ocr = (text = '') => {
     let j = 0;
     while (j < 3) {
       const randIndex = Math.floor(Math.random() * numQuestions);
-      if (!(historyQuestions[randIndex] in selectedQuestions)) {
+      if (!(selectedQuestions.includes(historyQuestions[randIndex]))) {
         j += 1;
         question.answers.push(historyQuestions[randIndex].answers[0]);
       }

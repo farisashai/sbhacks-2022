@@ -95,7 +95,7 @@ const Join = () => {
       return (
         <MobileLayout>
           <div style={{ height: '50px' }} />
-          <MobileHeader header="Question 1 " body="" />
+          <MobileHeader header={`Question ${questionState.questionNumber}`} body="" />
           <div className="answers">
             <MobileAnswer
               letter="A"

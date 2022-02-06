@@ -215,7 +215,7 @@ export const ocr = (text = '') => {
     if (result) questionsObjectList.push(historyQuestion);
   });
 
-  console.log("finishing getting questions");
+  console.log('finishing getting questions');
 
   // Get 5 random question indices in the array
   const numQuestions = questionsObjectList.length;
@@ -228,7 +228,7 @@ export const ocr = (text = '') => {
     }
   }
 
-  console.log("finishing selecting 5 questions");
+  console.log('finishing selecting 5 questions');
 
   const selectedQuestions = questionNumList.map((index) => historyQuestions[index]);
   selectedQuestions.forEach((question) => {
@@ -241,7 +241,6 @@ export const ocr = (text = '') => {
       }
     }
   });
-  console.log(selectedQuestions);
 
   return selectedQuestions;
 
@@ -263,3 +262,14 @@ export const ocr = (text = '') => {
   //   answersList.push(answerList);
   // });
 };
+
+// https://stackoverflow.com/a/12646864
+export function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    // eslint-disable-next-line no-param-reassign
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+
+  return array;
+}

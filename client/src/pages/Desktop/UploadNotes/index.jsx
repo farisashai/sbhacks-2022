@@ -4,17 +4,20 @@ import CircleButton from 'components/Circle/CircleButton';
 import OcrReader from 'components/OcrReader';
 import Layout from 'containers/Layout';
 import { UploadOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ocr, shuffleArray } from 'utils/ocr';
+import { AppContext } from 'utils/AppContext';
 
 const UploadNotes = () => {
+  const { setQuestions } = useContext(AppContext);
   const [fileList, setFileList] = useState([]);
   const navigate = useNavigate();
 
   const [ocrData, setOcrData] = useState('');
 
-  const onReadOcrData = (ocrData) => {
-    setOcrData(ocrData);
+  const onReadOcrData = (ocrDataIn) => {
+    setOcrData(ocrDataIn);
   };
 
   const onRemoveClicked = () => {
@@ -66,6 +69,32 @@ const UploadNotes = () => {
                       message: 'Please upload a file to start.',
                     });
                   } else {
+                    if (!ocrData) {
+                      notification.open({ message: "Please click 'Process the image with OCR' before contuning." });
+                      return;
+                    }
+
+                    const questions = ocr(ocrData);
+                    const processedQs = [];
+                    questions.forEach((question) => {
+                      if (!question.question || question.answers.length !== 4) {
+                        return;
+                      }
+
+                      const correct = question.answers[0];
+                      const qs = shuffleArray(question.answers);
+                      const correctIdx = qs.findIndex((q) => q === correct);
+
+                      processedQs.push({
+                        question: question.question,
+                        a: qs[0],
+                        b: qs[1],
+                        c: qs[2],
+                        d: qs[3],
+                        answer: ['A', 'B', 'C', 'D'][correctIdx],
+                      });
+                    });
+                    setQuestions(processedQs);
                     navigate('/lobby');
                   }
                 }}

@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppContext } from 'utils/AppContext';
 
 const Lobby = () => {
-  const { setGameID } = useContext(AppContext);
+  const { setGameID, questions } = useContext(AppContext);
   const [game, setGame] = useState();
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ const Lobby = () => {
       setGame(resp);
     });
 
-    sendCreateGame();
+    sendCreateGame(questions);
   }, []);
 
   return (

@@ -12,8 +12,8 @@ const connection = io(SERVER_URL);
 
 // Host-Specific Commands
 
-export const sendCreateGame = () => {
-  connection.emit('createGame');
+export const sendCreateGame = (questions) => {
+  connection.emit('createGame', questions);
 };
 
 // { gameID, players: { playerID, name, photo, score }[], active }

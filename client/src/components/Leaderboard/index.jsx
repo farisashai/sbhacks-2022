@@ -30,7 +30,7 @@ const Leaderboard = ({ finished, players }) => {
       </div>
       <div className="leaderboard-right">
         <img className="trophies" src={trophies} alt="trophies" />
-        {finished && <CircleButton text="New Game" onclick={() => navigate('/lobby')} />}
+        {finished && <CircleButton text="New Game" onclick={() => navigate('/')} />}
       </div>
     </div>
   );

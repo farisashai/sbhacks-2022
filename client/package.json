@@ -14,7 +14,7 @@
     "socket.io-client": "^4.4.1"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "ESLINT_NO_DEV_ERRORS=true craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",

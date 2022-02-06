@@ -5,17 +5,21 @@ import MobileLayout from 'containers/MobileLayout'
 
 import MobileHeader from 'components/MobileHeader'
 import CircleButton from 'components/Circle/CircleButton'
-import { sendJoinGame, listenFailedJoin, listenSucceededJoin, listenQuestionStarted} from 'utils/socketHandler';
+import {
+  sendJoinGame,
+  listenFailedJoin,
+  listenSucceededJoin,
+  listenQuestionStarted,
+} from 'utils/socketHandler'
 import { notification } from 'antd'
 import { useSearchParams } from 'react-router-dom'
 
 const Join = (props) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams()
   const [gameState, setGameState] = useState('signup')
-  const [roomCode, setRoomCode] = useState(searchParams.get('code'))
+  const [roomCode, setRoomCode] = useState(searchParams.get('code') ?? '')
   const [name, setName] = useState('')
 
-  
   useEffect(() => {
     if (gameState === 'joined') {
       listenQuestionStarted(() => {
@@ -28,21 +32,33 @@ const Join = (props) => {
       return (
         <MobileLayout>
           <label htmlFor="">Room Code</label>
-          <input value={roomCode} onChange={e => setRoomCode(e.target.value)} type="text" placeholder="ENTER 4 LETTER GAME CODE" />
+          <input
+            value={roomCode}
+            onChange={(e) => setRoomCode(e.target.value)}
+            type="text"
+            placeholder="ENTER 4 LETTER GAME CODE"
+          />
           <label htmlFor="">Name</label>
-          <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="ENTER YOUR NAME" />
-          <CircleButton text="Start" onclick={() => {
-            listenFailedJoin(() => {
-              notification.open({
-                message: 'Failed to join room.',
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            type="text"
+            placeholder="ENTER YOUR NAME"
+          />
+          <CircleButton
+            text="Start"
+            onclick={() => {
+              listenFailedJoin(() => {
+                notification.open({
+                  message: 'Failed to join room.',
+                })
               })
-            })
-            listenSucceededJoin(() => {
-              setGameState('joined');
-            })
-            sendJoinGame(roomCode, name)
-
-          }}/>
+              listenSucceededJoin(() => {
+                setGameState('joined')
+              })
+              sendJoinGame(roomCode, name)
+            }}
+          />
         </MobileLayout>
       )
     case 'joined':

@@ -1,9 +1,11 @@
 import './style.less';
 import PlayerIcons from 'components/PlayerIcons';
 import CircleButton from 'components/Circle/CircleButton';
-import trophies from '../../assets/trophies.svg';
+import trophies from 'assets/trophies.svg';
+import { useNavigate } from 'react-router-dom';
 
 const Leaderboard = ({ finished, players }) => {
+  const navigate = useNavigate();
   return (
     <div className="leaderboard-container">
       <div className="leaderboard-left">
@@ -24,8 +26,8 @@ const Leaderboard = ({ finished, players }) => {
         </div>
       </div>
       <div className="leaderboard-right">
-        <img src={trophies} alt="trophies" />
-        {finished && <CircleButton text="New Game" />}
+        <img className="trophies" src={trophies} alt="trophies" />
+        {finished && <CircleButton text="New Game" onclick={() => navigate('/lobby')} />}
       </div>
     </div>
   );

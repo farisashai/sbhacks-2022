@@ -6,8 +6,9 @@ import MobileWaiting from 'components/MobileWaiting';
 
 const Join = () => {
   return (
-    <Layout>
-      
+    <Layout> 
+      <MobileWaiting header="Meow meow!" body="meow meow!" />
+
     </Layout>
   );
 }

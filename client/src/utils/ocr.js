@@ -243,6 +243,8 @@ export const ocr = (text = '') => {
   });
   console.log(selectedQuestions);
 
+  return selectedQuestions;
+
   // Fill 4 answers per question
   // const answersList = [];
   // questionNumList.forEach((index) => {

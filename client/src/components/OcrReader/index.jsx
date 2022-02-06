@@ -1,6 +1,9 @@
 /* eslint-disable react/function-component-definition */
 import { useState } from 'react';
 import { createWorker } from 'tesseract.js';
+import { Spin } from 'antd';
+
+import './style.less';
 
 // OCR Statuses
 const STATUSES = {
@@ -10,11 +13,9 @@ const STATUSES = {
   SUCCEEDED: 'OCR processing complete',
 };
 
-function OcrReader({ selectedImage, onReadOcrData, onRemoveClicked, ocrData, setOcrData }) {
+function OcrReader({ selectedImage, onReadOcrData, ocrData, setOcrData }) {
   const [ocrState, setOcrState] = useState(STATUSES.IDLE);
   const worker = createWorker();
-
-  console.log(selectedImage);
 
   // Process image with OCR
   const readImageText = async () => {
@@ -36,44 +37,37 @@ function OcrReader({ selectedImage, onReadOcrData, onRemoveClicked, ocrData, set
     }
   };
 
-  // Executed when "Use another image" is selected
-  const handleRemoveClicked = () => {
-    // setSelectedImage(null);
-    onRemoveClicked();
-    setOcrState(STATUSES.IDLE);
-  };
-
   return (
-    <div>
+    <div className="ocr-reader">
       {selectedImage && (
         <div>
           <img src={URL.createObjectURL(selectedImage)} alt="scanned file" />
         </div>
       )}
       <div>
-        {selectedImage ? (
-          <div className="button-container">
-            <button onClick={readImageText}>Process the image with OCR</button>
-          </div>
-        ) : (
-          <>
-            <p>Upload an image to process</p>
-            <input
-              type="file"
-              name="ocr-image"
-              onChange={(event) => {
-                setSelectedImage(event.target.files[0]);
-              }}
-            />
-            <p>Supported formats: bmp, jpg, png, pbm.</p>
-          </>
-        )}
+        <div className="button-container">
+          <button type="button" onClick={readImageText}>
+            Process the image with OCR
+          </button>
+        </div>
       </div>
-      <div className="status">{ocrData}</div>
       <br />
-      <div>
-        <textarea rows="15" cols="45" name="name" defaultValue={ocrData} onChange={(e) => setOcrData(e.target.value)} />
-      </div>
+      {ocrState === STATUSES.PENDING && (
+        <div>
+          <Spin size="large" />
+        </div>
+      )}
+      {ocrData && (
+        <div className="textarea">
+          <textarea
+            rows="10"
+            cols="45"
+            name="name"
+            defaultValue={ocrData}
+            onChange={(e) => setOcrData(e.target.value)}
+          />
+        </div>
+      )}
     </div>
   );
 }

@@ -29,7 +29,7 @@ const UploadNotes = () => {
           <Upload
             fileList={fileList}
             onChange={({ file }) => {
-              setFileList([{ ...file.originfileObj, name: file.name }]);
+              setFileList([{ ...file, name: file.name }]);
             }}
             maxCount={1}
             showUploadList={{ showDownloadIcon: false, showPreviewIcon: false, showRemoveIcon: false }}
@@ -48,7 +48,7 @@ const UploadNotes = () => {
         {fileList.length === 1 && (
           <>
             <OcrReader
-              selectedImage={fileList[0]}
+              selectedImage={fileList[0].originFileObj}
               ocrData={ocrData}
               setOcrData={setOcrData}
               onReadOcrData={onReadOcrData}

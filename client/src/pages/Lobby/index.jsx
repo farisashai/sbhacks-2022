@@ -7,28 +7,45 @@ import { useEffect, useState } from 'react'
 import { listenGameCreated, sendCreateGame } from 'utils/socketHandler'
 import yelp from 'assets/yelp-qr.svg'
 function Lobby() {
-  const [code, setCode] = useState('');
+  const [game, setGame] = useState();
 
   useEffect(() => {
     listenGameCreated((resp) => {
       console.log(resp);
 
-      setCode(resp.code);
+      setGame(resp);
     });
 
     sendCreateGame();
-  })
+  }, [])
 
   return (
     <Layout>
       <div className="lobby-container">
-        <div className="lobby-left"></div>
-        <div className="lobby-right">
-          <img src={yelp} alt="" />
-          <h1>M30A</h1>
-          <h2>Room Code</h2>
-          <CircleButton />
-        </div>
+        {game && 
+        (<>
+            <div className="lobby-left">
+              <h1>Scan the QR code to join!</h1>
+              <div className="players">
+                {/* {game.players.map((player, index) => (
+                  <PlayerIcons key={player.playerID} index={index} name={player.name} photo={player.photo} />
+                ))} */}
+                <PlayerIcons index={0} name="Faris" />
+                <PlayerIcons index={1} name="Faris" />
+                <PlayerIcons index={2} name="Faris" />
+                <PlayerIcons index={3} name="Faris" />
+                <PlayerIcons index={4} name="Faris" />
+                <PlayerIcons index={5} />
+              </div>
+            </div>
+            <div className="lobby-right">
+              <img src={yelp} alt="" />
+              <h1>{game.gameID}</h1>
+              <h2>Room Code</h2>
+              <CircleButton text="Start" onclick={() => {}}/>
+            </div>
+          </>
+        )}
       </div>
       {/* <div className="StartingPage">
         <h1>Scan the QR code to join!</h1>

@@ -4,17 +4,13 @@ import HowToCircle from 'components/Circle/HowToCircle'
 import howto1 from 'assets/howto1.svg'
 import howto2 from 'assets/howto2.svg'
 import howto3 from 'assets/howto3.svg'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Layout from 'containers/Layout'
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
   const [index, setIndex] = useState(0)
   const navigate = useNavigate()
-
-  useEffect(() => {
-
-  });
 
   const slides = [
     <LandingCircle onclick={() => setIndex((index) => index + 1)} />,

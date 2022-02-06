@@ -3,7 +3,7 @@ import PlayerIcons from 'components/PlayerIcons';
 import CircleButton from 'components/Circle/CircleButton';
 import trophies from '../../assets/trophies.svg';
 
-const Leaderboard = ({ finished, answerCount, players }) => {
+const Leaderboard = ({ finished, players }) => {
   return (
     <div className="leaderboard-container">
       <div className="leaderboard-left">
@@ -11,12 +11,6 @@ const Leaderboard = ({ finished, answerCount, players }) => {
         {!finished && <h1>Leaderboard</h1>}
 
         <div className="players">
-          {/* <PlayerIcons position={1} username="Shirley" image="icon-1.svg" showPoints points={12000} />
-          <PlayerIcons position={2} username="aohsdashdoasdho" image="icon-1.svg" showPoints points={6000} />
-          <PlayerIcons position={3} username="a" image="icon-1.svg" showPoints points={5000} />
-          <PlayerIcons position={4} username="Eric" image="icon-1.svg" showPoints points={200} />
-          <PlayerIcons position={5} username="Stanley" image="icon-1.svg" showPoints points={5} />
-          <PlayerIcons position={6} /> */}
           {players.map((player, index) => (
             <PlayerIcons
               key={player.playerID}

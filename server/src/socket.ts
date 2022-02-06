@@ -58,6 +58,8 @@ class Game {
     players: Player[];
     active: boolean;
     questions: Question[];
+    questionNumber: number;
+    questionTotal: number;
     currentQuestion: Question;
     guesses: Guess[];
     timeoutID: NodeJS.Timeout;
@@ -67,6 +69,8 @@ class Game {
         this.players = [];
         this.active = false;
         // this.questions = [];
+        this.questionNumber = 0;
+        this.questionTotal = 3;
         this.currentQuestion = null;
         this.guesses = [];
         this.timeoutID = null;
@@ -140,11 +144,14 @@ export class ConnectionHandler {
 
         if (game.questions.length !== 0) {
             console.log("questionStarted");
-            this.io.emit('questionStarted', game.questions[0].getPublicQuestion());
+
+            game.questionNumber++;
+
+            this.io.emit('questionStarted', {...game.questions[0].getPublicQuestion(), questionNumber: game.questionNumber, questionTotal: game.questionTotal });
 
             game.currentQuestion = game.questions[0];
 
-            game.questions = game.questions.splice(0, 1);
+            game.questions.splice(0, 1);
             games.set(gameID, game);
         }
 
@@ -174,7 +181,7 @@ export class ConnectionHandler {
             this.io.emit('questionEnded', question);
 
             setTimeout(() => {
-                this.io.emit('gameResults', { finished: game.questions.length === 0, question, answerCount: 0, players: game.players });
+                this.io.emit('gameResults', { finished: game.questions.length === 0, question, players: game.players });
 
                 if (game.questions.length !== 0) {
                     setTimeout(() => {
@@ -213,7 +220,7 @@ export class ConnectionHandler {
 
             games.set(gameID, game);
 
-            this.io.emit('gameResults', { finished: game.questions.length === 0, question, answerCount: 0, players: game.players });
+            this.io.emit('gameResults', { finished: game.questions.length === 0, question, players: game.players });
         }
     };
 
@@ -287,6 +294,6 @@ export class ConnectionHandler {
         this.socket.on('skipQuestion', this.handleSkipQuestion);
         this.socket.on('startGame', this.handleStartGame);
     
-        console.log('a user connected');
+        console.log(`a user, ${this.socket.id}, connected`);
     };
 }

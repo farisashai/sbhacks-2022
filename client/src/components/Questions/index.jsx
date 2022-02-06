@@ -1,19 +1,24 @@
 import { useEffect, useState } from 'react';
 
-import Layout from '../../containers/Layout';
-import Question from '../Question';
+// import Question from '../Question';
+import scribble from 'assets/scribble3.svg';
+// import circle from ' assets/circle2.svg';
 import Answer from '../Answer';
-
 import './style.less';
 
-const Questions = ({ number, question, answerA, answerB, answerC, answerD, answerCount, correct }) => {
+const Questions = ({
+  questionState: { number, question, answerA, answerB, answerC, answerD, answerCount, correct },
+}) => {
   const [time, setTime] = useState(10);
 
   useEffect(() => {
+    console.log('sheck');
     const intID = setInterval(() => {
+      console.log('hi');
       setTime(time - 1);
 
       if (time === 0) {
+        console.log('clearing');
         window.clearInterval(intID);
       }
     }, 1000);
@@ -27,7 +32,10 @@ const Questions = ({ number, question, answerA, answerB, answerC, answerD, answe
       </div>
       <div className="time-answer-div">
         <span className="timer">{time} sec</span>
-        <span className="num-answers">{answerCount}/4 answers</span>
+        <div className="ans-count">
+          <span className="num-answers">{answerCount}/4 answers</span>
+          <img src={scribble} alt="" />
+        </div>
       </div>
       <div className="question-options">
         <Answer letter="A" answer={answerA} toggle={correct === 'A'} />

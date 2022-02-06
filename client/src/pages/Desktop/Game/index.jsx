@@ -20,22 +20,17 @@ const Game = () => {
   const [questionState, setQuestionState] = useState();
   const [leaderboardState, setLeaderboardState] = useState();
 
-  const [questionCount, setQuestionCount] = useState(0);
-  const [answerCount, setAnswerCount] = useState(0);
-
   useEffect(() => {
     listenQuestionStarted((resp) => {
-      setQuestionState(resp);
-      setQuestionCount(questionCount + 1);
+      setQuestionState({ ...resp, answerCount: 0 });
       setMode('question');
     });
 
     listenQuestionUpdated((resp) => {
-      setAnswerCount(resp.answerCount);
+      setQuestionState({ ...questionState, answerCount: resp.answerCount });
     });
 
     listenQuestionEnded((resp) => {
-      console.log('question ended', resp);
       setQuestionState(resp);
     });
 
@@ -45,29 +40,12 @@ const Game = () => {
     });
 
     sendStartGame(localStorage.getItem('gameID'));
-  }, [listenQuestionStarted, setQuestionState, setQuestionCount, listenQuestionUpdated, setAnswerCount]);
+  }, [listenQuestionStarted, setQuestionState, listenQuestionUpdated]);
 
   return (
     <Layout>
-      {mode === 'question' && (
-        <Questions
-          number={questionCount}
-          question={questionState.question}
-          answerA={questionState.answerA}
-          answerB={questionState.answerB}
-          answerC={questionState.answerC}
-          answerD={questionState.answerD}
-          answerCount={answerCount}
-          correct={questionState.correct}
-        />
-      )}
-      {mode === 'leaderboard' && (
-        <Leaderboard
-          finished={leaderboardState.finish}
-          answerCount={leaderboardState.answerCount}
-          players={leaderboardState.players}
-        />
-      )}
+      {mode === 'question' && <Questions questionState={questionState} />}
+      {mode === 'leaderboard' && <Leaderboard finished={leaderboardState.finish} players={leaderboardState.players} />}
     </Layout>
   );
 };

@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Home from 'pages/Home';
-import UploadNotes from 'pages/UploadNotes';
-import Lobby from 'pages/Lobby';
-import Join from 'pages/Join';
-import Questions from 'pages/Questions';
+import Home from 'pages/Desktop/Home';
+import UploadNotes from 'pages/Desktop/UploadNotes';
+import Lobby from 'pages/Desktop/Lobby';
+import Join from 'pages/Mobile/Join';
+import Game from 'pages/Desktop/Game';
 import Steven from 'containers/Steven';
 
 import './index.css';
@@ -19,7 +19,7 @@ ReactDOM.render(
         <Route exact path="/upload" element={<UploadNotes />} />
         <Route exact path="/join" element={<Join />} />
         <Route exact path="/lobby" element={<Lobby />} />
-        <Route exact path="/play" element={<Questions />} />
+        <Route exact path="/play" element={<Game />} />
         <Route exact path="/steven" element={<Steven />} />
       </Routes>
     </Router>

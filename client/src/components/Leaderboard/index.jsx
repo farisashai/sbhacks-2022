@@ -17,18 +17,15 @@ const Leaderboard = ({ finished, players }) => {
               position={index}
               username={player.name}
               image={player.photo}
-              points={player.points}
+              points={player.score}
               showPoints
             />
           ))}
-          {[...Array(6 - players.length)].map((_, index) => {
-            return <PlayerIcons position={players.length + index + 1} image="question-icon.svg" />;
-          })}
         </div>
       </div>
       <div className="leaderboard-right">
         <img src={trophies} alt="trophies" />
-        {!finished && <CircleButton text="New Game" />}
+        {finished && <CircleButton text="New Game" />}
       </div>
     </div>
   );

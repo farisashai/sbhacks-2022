@@ -147,7 +147,7 @@ export class ConnectionHandler {
 
             game.questionNumber++;
 
-            this.io.emit('questionStarted', {...game.questions[0].getPublicQuestion(), questionNumber: game.questionNumber, questionTotal: game.questionTotal });
+            this.io.emit('questionStarted', {...game.questions[0].getPublicQuestion(), questionNumber: game.questionNumber, questionTotal: game.questionTotal, playerCount: game.players.length });
 
             game.currentQuestion = game.questions[0];
 
@@ -178,7 +178,7 @@ export class ConnectionHandler {
             game.guesses = [];
             games.set(gameID, game);
 
-            this.io.emit('questionEnded', question);
+            this.io.emit('questionEnded', { ...question, questionNumber: game.questionNumber, questionTotal: game.questionTotal, playerCount: game.players.length });
 
             setTimeout(() => {
                 this.io.emit('gameResults', { finished: game.questions.length === 0, question, players: game.players });
@@ -186,9 +186,9 @@ export class ConnectionHandler {
                 if (game.questions.length !== 0) {
                     setTimeout(() => {
                         this.doQuestion(gameID);
-                    }, 5000);
+                    }, 7500);
                 }
-            }, 5000);
+            }, 7500);
         }, 10000);
 
         game.timeoutID = timeoutID;

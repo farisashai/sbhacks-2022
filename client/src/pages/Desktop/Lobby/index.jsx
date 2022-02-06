@@ -25,7 +25,7 @@ const Lobby = () => {
   }, []);
 
   return (
-    <Layout game={game}>
+    <Layout name={(game && game.players && `${game.players.length}/6 people`) || ''} joiningGame>
       <div className="lobby-container">
         {game && (
           <>
@@ -35,8 +35,8 @@ const Lobby = () => {
                 {game.players.map((player, index) => (
                   <PlayerIcons key={player.playerID} position={index} username={player.name} image={player.photo} />
                 ))}
-                {[...Array(6 - game.players.length)].map((_, index) => {
-                  return <PlayerIcons position={game.players.length + index + 1} image="question-icon.svg" />;
+                {[...Array(6 - game.players.length).keys()].map((val, index) => {
+                  return <PlayerIcons key={val} position={game.players.length + index + 1} image="question-icon.svg" />;
                 })}
               </div>
             </div>

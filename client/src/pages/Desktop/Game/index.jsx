@@ -17,7 +17,7 @@ import './style.less';
 const Game = () => {
   const [mode, setMode] = useState(); // question or leaderboard
 
-  const [questionState, setQuestionState] = useState();
+  const [questionState, setQuestionState] = useState({ questionNumber: 0, questionTotal: 0 });
   const [leaderboardState, setLeaderboardState] = useState();
 
   useEffect(() => {
@@ -43,11 +43,15 @@ const Game = () => {
   }, [listenQuestionStarted, setQuestionState, listenQuestionUpdated]);
 
   return (
-    <Layout>
-      {mode === 'question' && <Questions questionState={questionState} />}
-      {mode === 'leaderboard' && <Leaderboard finished={leaderboardState.finish} players={leaderboardState.players} />}
+    <Layout name={`Question ${questionState.questionNumber}/${questionState.questionTotal}`} playingGame>
+      {mode === 'question' && <Questions questionState={questionState} playerCount={questionState.playerCount} />}
+      {mode === 'leaderboard' && (
+        <Leaderboard finished={leaderboardState.finished} players={leaderboardState.players} />
+      )}
     </Layout>
   );
 };
 
 export default Game;
+
+// Question {questinoState.number}/{questionState.totle}

@@ -5,7 +5,7 @@ import pen from 'assets/pen.svg';
 import scribble from 'assets/scribble.svg';
 import scribble2 from 'assets/scribble2.svg';
 
-const Header = ({ title, game, onClick }) => {
+const Header = ({ title, onClick }) => {
   const navigate = useNavigate();
   return (
     <div className="header">
@@ -15,8 +15,8 @@ const Header = ({ title, game, onClick }) => {
         <img className="scribble2" src={scribble2} alt="scribble" />
       </div>
       <div className="header-right">
-        <button className="join-game" onClick={onClick}>
-          {game ? `${game.players.length}/6 Players` : title}
+        <button type="button" className="join-game" onClick={onClick}>
+          {title}
         </button>
         <img src={scribble} alt="" />
       </div>

@@ -9,6 +9,8 @@ module.exports = {
   },
   rules: {
     'jsx-a11y/href-no-hash': ['off'],
+    'jsx-a11y/click-events-have-key-events': ['off'],
+    'jsx-a11y/no-static-element-interactions': ['off'],
     'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx'] }],
     'react/function-component-definition': [
       2,

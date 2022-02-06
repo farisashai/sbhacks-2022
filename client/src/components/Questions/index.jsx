@@ -2,27 +2,29 @@ import { useEffect, useState } from 'react';
 
 // import Question from '../Question';
 import scribble from 'assets/scribble3.svg';
-// import circle from ' assets/circle2.svg';
+// import circle from 'assets/circle2.svg';
 import Answer from '../Answer';
 import './style.less';
 
 const Questions = ({
-  questionState: { number, question, answerA, answerB, answerC, answerD, answerCount, correct },
+  questionState: { number, question, answerA, answerB, answerC, answerD, answerCount = 0, correct, playerCount = 0 },
 }) => {
   const [time, setTime] = useState(10);
+  const [timer, setTimer] = useState();
 
   useEffect(() => {
-    console.log('sheck');
     const intID = setInterval(() => {
-      console.log('hi');
-      setTime(time - 1);
-
-      if (time === 0) {
-        console.log('clearing');
-        window.clearInterval(intID);
-      }
+      setTime((prevTime) => prevTime - 1);
     }, 1000);
+
+    setTimer(intID);
   }, [question]);
+
+  useEffect(() => {
+    if (time === 0 && timer) {
+      window.clearInterval(timer);
+    }
+  }, [time, timer]);
 
   return (
     <div className="question-container">
@@ -33,7 +35,9 @@ const Questions = ({
       <div className="time-answer-div">
         <span className="timer">{time} sec</span>
         <div className="ans-count">
-          <span className="num-answers">{answerCount}/4 answers</span>
+          <span className="num-answers">
+            {answerCount}/{playerCount} answers
+          </span>
           <img src={scribble} alt="" />
         </div>
       </div>

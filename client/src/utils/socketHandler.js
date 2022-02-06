@@ -68,7 +68,7 @@ export const sendAnswerQuestion = (gameID, playerID, answer) => {
 
 // Shared Commands
 
-// { question, answerA, answerB, answerC, answerD, questionNumber, questionTital }
+// { question, answerA, answerB, answerC, answerD, questionNumber, questionTotal }
 export const listenQuestionStarted = (callback) => {
   connection.removeAllListeners('questionStarted');
   connection.on('questionStarted', callback);

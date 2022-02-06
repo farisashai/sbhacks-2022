@@ -13,26 +13,26 @@ const Home = () => {
   const navigate = useNavigate();
 
   const slides = [
-    <LandingCircle onclick={() => setIndex((index) => index + 1)} />,
+    <LandingCircle onclick={() => setIndex((i) => i + 1)} />,
     <HowToCircle
       image={howto1}
       description="First, upload your notes to generate questions!"
       buttonText="Next"
-      back={() => setIndex((index) => index - 1)}
-      next={() => setIndex((index) => index + 1)}
+      back={() => setIndex((i) => i - 1)}
+      next={() => setIndex((i) => i + 1)}
     />,
     <HowToCircle
       image={howto2}
       description="Second, have your friends scan the QR code"
       buttonText="Next"
-      back={() => setIndex((index) => index - 1)}
-      next={() => setIndex((index) => index + 1)}
+      back={() => setIndex((i) => i - 1)}
+      next={() => setIndex((i) => i + 1)}
     />,
     <HowToCircle
       image={howto3}
       description="Last, answer questions and climb the leaderboard!"
       buttonText="Start"
-      back={() => setIndex((index) => index - 1)}
+      back={() => setIndex((i) => i - 1)}
       next={() => navigate('/upload')}
     />,
   ];

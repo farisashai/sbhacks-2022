@@ -1,6 +1,6 @@
 import * as historyQuestions from './history.json';
 
-export const textToJSON = (text, ascending = true) => {
+export const textToJSON = (text, ascending = false) => {
   const stopwords = [
     'a',
     'about',
@@ -177,10 +177,12 @@ export const textToJSON = (text, ascending = true) => {
     'yourself',
     'yourselves',
   ];
+  text = text.toLowerCase();
   const words = text.match(/\b(\w+)\b/g);
   const freqDict = {};
   words.forEach((word) => {
-    if (word in stopwords) {
+    if (stopwords.includes(word)) {
+      // console.log(word)
       return;
     }
     if (!(word in freqDict)) {
@@ -201,6 +203,8 @@ export const ocr = (text = '') => {
   // Get top 5 words from input
   const sortedWordFreq = textToJSON(text).splice(0, 5);
 
+  console.log(sortedWordFreq);
+
   // Get all questions containing at least one of the words
   const questionsObjectList = [];
   const questionNumList = [];
@@ -210,6 +214,8 @@ export const ocr = (text = '') => {
     const result = sortedWordFreq.some((w) => question.includes(w[0]));
     if (result) questionsObjectList.push(historyQuestion);
   });
+
+  console.log("finishing getting questions");
 
   // Get 5 random question indices in the array
   const numQuestions = questionsObjectList.length;
@@ -221,6 +227,8 @@ export const ocr = (text = '') => {
       questionNumList.push(randNum);
     }
   }
+
+  console.log("finishing selecting 5 questions");
 
   const selectedQuestions = questionNumList.map((index) => historyQuestions[index]);
   selectedQuestions.forEach((question) => {

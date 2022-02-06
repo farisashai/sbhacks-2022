@@ -6,7 +6,7 @@ import Answer from '../Answer';
 
 import './style.less';
 
-const Questions = ({ number, question, answerA, answerB, answerC, answerD, answerCount }) => {
+const Questions = ({ number, question, answerA, answerB, answerC, answerD, answerCount, correct }) => {
   const [time, setTime] = useState(10);
 
   useEffect(() => {
@@ -30,10 +30,10 @@ const Questions = ({ number, question, answerA, answerB, answerC, answerD, answe
         <span className="num-answers">{answerCount}/4 answers</span>
       </div>
       <div className="question-options">
-        <Answer letter="A" answer={answerA} toggle={false} />
-        <Answer letter="B" answer={answerB} toggle={false} />
-        <Answer letter="C" answer={answerC} toggle={false} />
-        <Answer letter="D" answer={answerD} toggle={false} />
+        <Answer letter="A" answer={answerA} toggle={correct === 'A'} />
+        <Answer letter="B" answer={answerB} toggle={correct === 'B'} />
+        <Answer letter="C" answer={answerC} toggle={correct === 'C'} />
+        <Answer letter="D" answer={answerD} toggle={correct === 'D'} />
       </div>
     </div>
   );

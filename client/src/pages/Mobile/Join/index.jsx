@@ -56,8 +56,9 @@ const Join = () => {
                   message: 'Failed to join room.',
                 });
               });
-              listenSucceededJoin(() => {
+              listenSucceededJoin((resp) => {
                 setGameState('joined');
+                localStorage.setItem('playerID', resp.playerID);
               });
               sendJoinGame(roomCode, name);
             }}

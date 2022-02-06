@@ -1,11 +1,9 @@
 import { io } from 'socket.io-client';
 
-console.log('hello');
-
 let SERVER_URL;
 
 if (process.env.NODE_ENV !== 'production') {
-  SERVER_URL = 'https://localhost:4000';
+  SERVER_URL = 'http://192.168.1.42:4000';
 } else {
   SERVER_URL = 'https://quizlash.herokuapp.com/';
 }
@@ -30,8 +28,8 @@ export const listenGameUpdated = (callback) => {
   connection.on('gameUpdated', callback);
 };
 
-export const sendStartGame = () => {
-  connection.emit('startGame');
+export const sendStartGame = (gameID) => {
+  connection.emit('startGame', { gameID });
 };
 
 // { answerCount }
@@ -76,13 +74,13 @@ export const listenQuestionStarted = (callback) => {
   connection.on('questionStarted', callback);
 };
 
+// question: { question, answerA, answerB, answerC, answerD, correct },
 export const listenQuestionEnded = (callback) => {
   connection.removeAllListeners('questionEnded');
   connection.on('questionEnded', callback);
 };
 
-// { finished, question: { question, answerA, answerB, answerC, answerD, correct },
-//     answerCount, players: { playerID, name, photo, score }[] }
+// { finished, answerCount, players: { playerID, name, photo, score }[] }
 export const listenGameResults = (callback) => {
   connection.removeAllListeners('gameResults');
   connection.on('gameResults', callback);

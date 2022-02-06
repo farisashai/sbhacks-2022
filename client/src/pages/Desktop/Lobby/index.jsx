@@ -14,6 +14,7 @@ const Lobby = () => {
   useEffect(() => {
     listenGameCreated((resp) => {
       setGame(resp);
+      localStorage.setItem('gameID', resp.gameID);
     });
 
     listenGameUpdated((resp) => {

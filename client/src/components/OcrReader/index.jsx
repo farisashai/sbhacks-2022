@@ -67,7 +67,7 @@ function OcrReader({ onReadOcrData, onRemoveClicked, ocrData, setOcrData }) {
                 setSelectedImage(event.target.files[0]);
               }}
             />
-            <p>Supported formats:bmp, jpg, png, pbm</p>
+            <p>Supported formats: bmp, jpg, png, pbm.</p>
           </>
         )}
       </div>

@@ -8,6 +8,7 @@ import {
   listenQuestionUpdated,
   sendStartGame,
 } from 'utils/socketHandler';
+import music from 'assets/music.mp3';
 
 import Questions from 'components/Questions';
 import Leaderboard from 'components/Leaderboard';
@@ -44,6 +45,11 @@ const Game = () => {
     sendStartGame(gameID);
   }, [listenQuestionStarted, setQuestionState, listenQuestionUpdated]);
 
+  useEffect(() => {
+    const audio = new Audio(music);
+    audio.loop = true;
+    audio.play();
+  }, []);
   return (
     <Layout name={`Question ${questionState.questionNumber}/${questionState.questionTotal}`} playingGame>
       {mode === 'question' && <Questions questionState={questionState} />}

@@ -24,51 +24,55 @@ const UploadNotes = () => {
   return (
     <Layout>
       <div className="square">
-        <OcrReader
-          ocrData={ocrData}
-          setOcrData={setOcrData}
-          onReadOcrData={onReadOcrData}
-          onRemoveClicked={onRemoveClicked}
-        />
         <h1>Upload Notes</h1>
-        <Upload
-          fileList={fileList}
-          onChange={({ file }) => {
-            console.log(file);
-            setFileList([{ ...file.originfileObj, name: file.name }]);
-          }}
-          maxCount={1}
-          onRemove={() => {
-            setFileList([]);
-            // TODO: we can't remove files right now
-            return true;
-          }}
-          customRequest={({ file, onSuccess }) => {
-            setTimeout(() => {
-              onSuccess('ok');
-            }, 0);
-          }}
-        >
-          <button className="upload-btn">
-            <UploadOutlined className="upload-icon" />
-          </button>
-        </Upload>
-
-        <div className="button-group">
-          <button onClick={() => navigate('/')}>Back</button>
-          <CircleButton
-            onclick={() => {
-              if (fileList.length === 0) {
-                notification.open({
-                  message: 'Please upload a file to start.',
-                });
-              } else {
-                navigate('/lobby');
-              }
+        {fileList.length === 0 && (
+          <Upload
+            fileList={fileList}
+            onChange={({ file }) => {
+              setFileList([{ ...file.originfileObj, name: file.name }]);
             }}
-            text="Start"
-          />
-        </div>
+            maxCount={1}
+            showUploadList={{ showDownloadIcon: false, showPreviewIcon: false, showRemoveIcon: false }}
+            customRequest={({ onSuccess }) => {
+              setTimeout(() => {
+                onSuccess('ok');
+              }, 0);
+            }}
+          >
+            <button type="button" className="upload-btn">
+              <UploadOutlined className="upload-icon" />
+              <p>Upload your notes!</p>
+            </button>
+          </Upload>
+        )}
+        {fileList.length !== 1 && (
+          <>
+            <OcrReader
+              ocrData={ocrData}
+              setOcrData={setOcrData}
+              onReadOcrData={onReadOcrData}
+              onRemoveClicked={onRemoveClicked}
+            />
+
+            <div className="button-group">
+              <button type="button" onClick={() => navigate('/')}>
+                Back
+              </button>
+              <CircleButton
+                onclick={() => {
+                  if (fileList.length === 0) {
+                    notification.open({
+                      message: 'Please upload a file to start.',
+                    });
+                  } else {
+                    navigate('/lobby');
+                  }
+                }}
+                text="Start"
+              />
+            </div>
+          </>
+        )}
       </div>
     </Layout>
   );

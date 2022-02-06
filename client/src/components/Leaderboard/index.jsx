@@ -13,16 +13,19 @@ const Leaderboard = ({ finished, players }) => {
         {!finished && <h1>Leaderboard</h1>}
 
         <div className="players">
-          {players.map((player, index) => (
-            <PlayerIcons
-              key={player.playerID}
-              position={index}
-              username={player.name}
-              image={player.photo}
-              points={player.score}
-              showPoints
-            />
-          ))}
+          {players
+            .sort((a, b) => b.score - a.score)
+            .map((player, index) => (
+              <PlayerIcons
+                key={player.playerID}
+                position={index}
+                username={player.name}
+                image={player.photo}
+                points={player.score}
+                showPoints
+                winner={index === 0}
+              />
+            ))}
         </div>
       </div>
       <div className="leaderboard-right">

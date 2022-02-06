@@ -51,8 +51,12 @@ const Join = () => {
           <input
             className="signup-input"
             value={roomCode}
-            onChange={(e) => setRoomCode(e.target.value)}
+            onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
             type="text"
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            maxLength={4}
             placeholder="ENTER 4 LETTER GAME CODE"
           />
           <h1 className="signup-inputs">Name</h1>
@@ -144,7 +148,7 @@ const Join = () => {
         <MobileLayout>
           <MobileHeader header="Game Over" body="Look up to see what place you got!" />
           <div style={{ height: '100px' }} />
-          <CircleButton text="Leave" onClick={() => setGameState('signup')} />
+          <CircleButton text="Leave" onclick={() => setGameState('signup')} />
         </MobileLayout>
       );
     default:

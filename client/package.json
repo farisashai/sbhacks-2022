@@ -7,6 +7,7 @@
     "@craco/craco": "^6.4.3",
     "antd": "^4.18.5",
     "craco-less": "^2.0.0",
+    "cross-env": "^7.0.3",
     "qrcode.react": "^1.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -15,6 +16,7 @@
     "socket.io-client": "^4.4.1"
   },
   "scripts": {
+    "start": "cross-env ESLINT_NO_DEV_ERRORS=true craco start",
     "start": "ESLINT_NO_DEV_ERRORS=true craco start",
     "build": "DISABLE_ESLINT_PLUGIN='true' craco build",
     "test": "craco test",

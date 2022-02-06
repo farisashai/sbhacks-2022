@@ -39,15 +39,22 @@ const Join = () => {
     case 'signup':
       return (
         <MobileLayout>
-          <p>Room Code</p>
+          <h1 className="signup-inputs">Room Code</h1>
           <input
+            className="signup-input"
             value={roomCode}
             onChange={(e) => setRoomCode(e.target.value)}
             type="text"
             placeholder="ENTER 4 LETTER GAME CODE"
           />
-          <p>Name</p>
-          <input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="ENTER YOUR NAME" />
+          <h1 className="signup-inputs">Name</h1>
+          <input
+            className="last-input"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            type="text"
+            placeholder="ENTER YOUR NAME"
+          />
           <CircleButton
             text="Start"
             onclick={() => {

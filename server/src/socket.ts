@@ -70,7 +70,7 @@ class Game {
         this.active = false;
         // this.questions = [];
         this.questionNumber = 0;
-        this.questionTotal = 3;
+        
         this.currentQuestion = null;
         this.guesses = [];
         this.timeoutID = null;
@@ -80,6 +80,8 @@ class Game {
             new Question("What is the fourth number of the numberbet?", "1", "2", "3", "4", "D"),
             new Question("Who's last name is Lee?", "Shirley", "Steven", "Stanley", "Faris", "C"),
         ]
+
+        this.questionTotal = this.questions.length;
 
         // new Question("The routine RestoreContext", "always returns 0;", "always returns the id of the calling thread;", "returns either 0 or the id of the calling thread;", "does not return.", "D"),
         //     new Question("To yield (give up the CPU) to another process, a process must", "save the program counter last;", "save the stack pointer before the program counter;", "call SaveContext;", "call RestoreContext.", "D"),

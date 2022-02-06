@@ -29,11 +29,11 @@ const Game = () => {
     });
 
     listenQuestionUpdated((resp) => {
-      setQuestionState({ ...questionState, answerCount: resp.answerCount });
+      setQuestionState((prevState) => ({ ...prevState, answerCount: resp.answerCount }));
     });
 
     listenQuestionEnded((resp) => {
-      setQuestionState(resp);
+      setQuestionState((prevState) => ({ answerCount: prevState.answerCount, ...resp }));
     });
 
     listenGameResults((resp) => {
@@ -41,13 +41,12 @@ const Game = () => {
       setMode('leaderboard');
     });
 
-    console.log({ gameID });
     sendStartGame(gameID);
   }, [listenQuestionStarted, setQuestionState, listenQuestionUpdated]);
 
   return (
     <Layout name={`Question ${questionState.questionNumber}/${questionState.questionTotal}`} playingGame>
-      {mode === 'question' && <Questions questionState={questionState} playerCount={questionState.playerCount} />}
+      {mode === 'question' && <Questions questionState={questionState} />}
       {mode === 'leaderboard' && (
         <Leaderboard finished={leaderboardState.finished} players={leaderboardState.players} />
       )}

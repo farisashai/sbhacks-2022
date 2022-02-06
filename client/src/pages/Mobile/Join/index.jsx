@@ -73,7 +73,7 @@ const Join = () => {
               });
               listenSucceededJoin((resp) => {
                 setGameState('joined');
-                setGameID(roomCode);
+                setGameID(roomCode.trim().toLocaleUpperCase());
                 setPlayerID(resp.playerID);
               });
               sendJoinGame(roomCode.trim().toLocaleUpperCase(), name);

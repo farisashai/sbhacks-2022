@@ -7,7 +7,7 @@ import Answer from '../Answer';
 import './style.less';
 
 const Questions = ({
-  questionState: { number, question, answerA, answerB, answerC, answerD, answerCount = 0, correct, playerCount = 0 },
+  questionState: { number, question, answerA, answerB, answerC, answerD, answerCount, correct, playerCount },
 }) => {
   const [time, setTime] = useState(10);
   const [timer, setTimer] = useState();

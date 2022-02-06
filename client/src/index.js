@@ -11,9 +11,10 @@ import SocketTester from 'containers/SocketTester';
 
 import './index.css';
 import { AppProvider } from 'utils/AppContext';
-import textToJSON from 'utils/textToJson';
+import { textToJSON, ocr } from 'utils/ocr';
 
 window.text = textToJSON;
+window.ocr = ocr;
 
 ReactDOM.render(
   <React.StrictMode>

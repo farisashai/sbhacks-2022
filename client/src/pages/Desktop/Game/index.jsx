@@ -1,7 +1,15 @@
 import './style.less';
+import Questions from 'components/Questions';
+// import Leaderboard from 'components/Leaderboard';
+import Layout from 'containers/Layout';
 
-function Game() {
-  return <div className="game-container">hi</div>;
-}
+const Game = () => {
+  return (
+    <Layout>
+      <Questions />
+      {/* <Leaderboard /> */}
+    </Layout>
+  );
+};
 
 export default Game;

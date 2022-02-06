@@ -73,7 +73,8 @@ export const listenQuestionEnded = (callback) => {
   connection.on('questionEnded', callback);
 };
 
-// { finished, question: { question, answerA, answerB, answerC, answerD, correct }, answerCount, players: { playerID, name, photo, score }[] }
+// { finished, question: { question, answerA, answerB, answerC, answerD, correct },
+//     answerCount, players: { playerID, name, photo, score }[] }
 export const listenGameResults = (callback) => {
   connection.removeAllListeners('gameResults');
   connection.on('gameResults', callback);

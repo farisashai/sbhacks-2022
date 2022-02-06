@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { sendMessage } from 'utils/socketHandler';
 
-function Steven() {
+const Steven = () => {
   const [event, setEvent] = useState('');
   const [args, setArgs] = useState('');
 
@@ -20,6 +20,6 @@ function Steven() {
       </button>
     </div>
   );
-}
+};
 
 export default Steven;

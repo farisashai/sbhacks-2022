@@ -2,7 +2,7 @@ import Header from 'components/Header';
 import './style.less';
 import { useNavigate } from 'react-router-dom';
 
-function Layout({ game, children }) {
+const Layout = ({ game, children }) => {
   const navigate = useNavigate();
   return (
     <div className="background">
@@ -10,6 +10,6 @@ function Layout({ game, children }) {
       {children}
     </div>
   );
-}
+};
 
 export default Layout;

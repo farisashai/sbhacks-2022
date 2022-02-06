@@ -1,14 +1,15 @@
 import React from 'react';
 import './style.less';
 
-function PlayerIcons({ username, image, position }) {
+const PlayerIcons = ({ username, image, position, showPoints, points }) => {
   return (
     <div className="player">
       <img src={image} alt="icon" />
-      {username && <p>{username}</p>}
-      {!username && <p>#{position} open</p>}
+      {username && <p className="name">{username}</p>}
+      {!username && <p className="name">#{position} open</p>}
+      {showPoints && <p className="points">{points} points</p>}
     </div>
   );
-}
+};
 
 export default PlayerIcons;

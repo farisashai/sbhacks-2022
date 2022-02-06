@@ -1,7 +1,7 @@
 import './style.less';
 import CircleButton from 'components/Circle/CircleButton';
 
-function HowToCircle({ image, description, buttonText, back, next }) {
+const HowToCircle = ({ image, description, buttonText, back, next }) => {
   return (
     <div className="how-to-circle">
       <h1>How It Works</h1>
@@ -13,6 +13,6 @@ function HowToCircle({ image, description, buttonText, back, next }) {
       </div>
     </div>
   );
-}
+};
 
 export default HowToCircle;

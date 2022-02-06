@@ -180,12 +180,17 @@ export const textToJSON = (text, ascending = true) => {
   const words = text.match(/\b(\w+)\b/g);
   const freqDict = {};
   words.forEach((word) => {
-    if (!(word in freqDict) && !(word in stopwords)) {
+    if (word in stopwords) {
+      return;
+    }
+    if (!(word in freqDict)) {
       freqDict[word] = 1;
     } else {
       freqDict[word] += 1;
     }
   });
+
+  // console.log(freqDict);
 
   return Object.keys(freqDict)
     .map((word) => [word, freqDict[word]])
@@ -219,14 +224,14 @@ export const ocr = (text = '') => {
 
   const selectedQuestions = questionNumList.map((index) => historyQuestions[index]);
   selectedQuestions.forEach((question) => {
-    let i = 0;
-    while (i < 3) {
+    let j = 0;
+    while (j < 3) {
       const randIndex = Math.floor(Math.random() * numQuestions);
-      if (historyQuestions[randIndex] in selectedQuestions) continue;
-      i += 1;
-      question.answers.push(historyQuestions[randIndex].answers[0]);
+      if (!(historyQuestions[randIndex] in selectedQuestions)) {
+        j += 1;
+        question.answers.push(historyQuestions[randIndex].answers[0]);
+      }
     }
-    question.answers.push('abc');
   });
   console.log(selectedQuestions);
 

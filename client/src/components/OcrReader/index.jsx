@@ -10,10 +10,11 @@ const STATUSES = {
   SUCCEEDED: 'OCR processing complete',
 };
 
-function OcrReader({ onReadOcrData, onRemoveClicked, ocrData, setOcrData }) {
-  const [selectedImage, setSelectedImage] = useState(null);
+function OcrReader({ selectedImage, onReadOcrData, onRemoveClicked, ocrData, setOcrData }) {
   const [ocrState, setOcrState] = useState(STATUSES.IDLE);
   const worker = createWorker();
+
+  console.log(selectedImage);
 
   // Process image with OCR
   const readImageText = async () => {
@@ -37,7 +38,7 @@ function OcrReader({ onReadOcrData, onRemoveClicked, ocrData, setOcrData }) {
 
   // Executed when "Use another image" is selected
   const handleRemoveClicked = () => {
-    setSelectedImage(null);
+    // setSelectedImage(null);
     onRemoveClicked();
     setOcrState(STATUSES.IDLE);
   };
@@ -53,9 +54,6 @@ function OcrReader({ onReadOcrData, onRemoveClicked, ocrData, setOcrData }) {
         {selectedImage ? (
           <div className="button-container">
             <button onClick={readImageText}>Process the image with OCR</button>
-            <button className="remove-button" disabled={ocrState === STATUSES.PENDING} onClick={handleRemoveClicked}>
-              Use another image
-            </button>
           </div>
         ) : (
           <>

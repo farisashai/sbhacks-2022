@@ -45,9 +45,10 @@ const UploadNotes = () => {
             </button>
           </Upload>
         )}
-        {fileList.length !== 1 && (
+        {fileList.length === 1 && (
           <>
             <OcrReader
+              selectedImage={fileList[0]}
               ocrData={ocrData}
               setOcrData={setOcrData}
               onReadOcrData={onReadOcrData}

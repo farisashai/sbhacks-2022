@@ -8,7 +8,7 @@ import { useState } from 'react';
 import Layout from 'containers/Layout';
 import { useNavigate } from 'react-router-dom';
 
-function Home() {
+const Home = () => {
   const [index, setIndex] = useState(0);
   const navigate = useNavigate();
 
@@ -42,6 +42,6 @@ function Home() {
       <div className="circle">{slides[index]}</div>
     </Layout>
   );
-}
+};
 
 export default Home;

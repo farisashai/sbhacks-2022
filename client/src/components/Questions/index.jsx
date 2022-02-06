@@ -5,7 +5,7 @@ import Question from '../Question';
 import Answer from '../Answer';
 import { listenQuestionUpdated } from '../../utils/socketHandler';
 
-function Questions({ number, question, answerList }) {
+const Questions = ({ number, question, answerList }) => {
   const [numAnswered, setNumAnswered] = useState();
 
   useEffect(() => {
@@ -37,6 +37,6 @@ function Questions({ number, question, answerList }) {
       </div>
     </Layout>
   );
-}
+};
 
 export default Questions;

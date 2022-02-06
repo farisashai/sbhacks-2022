@@ -4,7 +4,7 @@ import circle from 'assets/create-circle.svg';
 
 import './style.less';
 
-function CircleButton({ text, onclick }) {
+const CircleButton = ({ text, onclick }) => {
   return (
     <div onClick={onclick} className="button">
       <button>{text}</button>
@@ -12,6 +12,6 @@ function CircleButton({ text, onclick }) {
       <img className="create-circle" src={circle} alt="circle" />
     </div>
   );
-}
+};
 
 export default CircleButton;

@@ -5,7 +5,7 @@ import pen from 'assets/pen.svg';
 import scribble from 'assets/scribble.svg';
 import scribble2 from 'assets/scribble2.svg';
 
-function Header({ title, game, onClick }) {
+const Header = ({ title, game, onClick }) => {
   const navigate = useNavigate();
   return (
     <div className="header">
@@ -22,6 +22,6 @@ function Header({ title, game, onClick }) {
       </div>
     </div>
   );
-}
+};
 
 export default Header;

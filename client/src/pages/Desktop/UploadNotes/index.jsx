@@ -6,7 +6,7 @@ import { UploadOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function UploadNotes() {
+const UploadNotes = () => {
   const [fileList, setFileList] = useState([]);
   const navigate = useNavigate();
 
@@ -55,6 +55,6 @@ function UploadNotes() {
       </div>
     </Layout>
   );
-}
+};
 
 export default UploadNotes;

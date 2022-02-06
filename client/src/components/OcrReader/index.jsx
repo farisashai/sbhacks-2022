@@ -60,10 +60,10 @@ function OcrReader({ selectedImage, onReadOcrData, ocrData, setOcrData }) {
       {ocrData && (
         <div className="textarea">
           <textarea
-            rows="10"
+            style={{ height: '200px' }}
             cols="45"
             name="name"
-            defaultValue={ocrData}
+            value={ocrData || ''}
             onChange={(e) => setOcrData(e.target.value)}
           />
         </div>

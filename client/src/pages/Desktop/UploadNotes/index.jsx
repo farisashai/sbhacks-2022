@@ -14,7 +14,7 @@ const UploadNotes = () => {
   const [fileList, setFileList] = useState([]);
   const navigate = useNavigate();
 
-  const [ocrData, setOcrData] = useState('');
+  const [ocrData, setOcrData] = useState();
 
   const onReadOcrData = (ocrDataIn) => {
     setOcrData(ocrDataIn);

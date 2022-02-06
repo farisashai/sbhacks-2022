@@ -179,6 +179,7 @@ export const textToJSON = (text, ascending = false) => {
   ];
   text = text.toLowerCase();
   const words = text.match(/\b(\w+)\b/g);
+  console.log({ words });
   const freqDict = {};
   words.forEach((word) => {
     if (stopwords.includes(word)) {
@@ -192,18 +193,16 @@ export const textToJSON = (text, ascending = false) => {
     }
   });
 
-  // console.log(freqDict);
+  const processedArray = Object.keys(freqDict).map((word) => [word, freqDict[word]]);
 
-  return Object.keys(freqDict)
-    .map((word) => [word, freqDict[word]])
-    .sort((a, b) => (ascending ? a[1] - b[1] : b[1] - a[1]));
+  const sortedArray = processedArray.sort((a, b) => (ascending ? a[1] - b[1] : b[1] - a[1]));
+
+  return sortedArray;
 };
 
 export const ocr = (text = '') => {
   // Get top 5 words from input
   const sortedWordFreq = textToJSON(text).splice(0, 5);
-
-  console.log(sortedWordFreq);
 
   // Get all questions containing at least one of the words
   const questionsObjectList = [];
@@ -215,27 +214,23 @@ export const ocr = (text = '') => {
     if (result) questionsObjectList.push(historyQuestion);
   });
 
-  console.log('finishing getting questions');
-
   // Get 5 random question indices in the array
   const numQuestions = questionsObjectList.length;
   let i = 0;
   while (i < 5) {
     const randNum = Math.floor(Math.random() * numQuestions);
-    if (!(questionNumList.includes(randNum))) {
+    if (!questionNumList.includes(randNum)) {
       i += 1;
       questionNumList.push(randNum);
     }
   }
 
-  console.log('finishing selecting 5 questions');
-
-  const selectedQuestions = questionNumList.map((index) => historyQuestions[index]);
+  const selectedQuestions = questionNumList.map((index) => questionsObjectList[index]);
   selectedQuestions.forEach((question) => {
     let j = 0;
     while (j < 3) {
       const randIndex = Math.floor(Math.random() * numQuestions);
-      if (!(selectedQuestions.includes(historyQuestions[randIndex]))) {
+      if (!selectedQuestions.includes(historyQuestions[randIndex])) {
         j += 1;
         question.answers.push(historyQuestions[randIndex].answers[0]);
       }

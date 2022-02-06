@@ -13,19 +13,14 @@ const Lobby = () => {
 
   useEffect(() => {
     listenGameCreated((resp) => {
-      console.log(resp);
+      setGame(resp);
+    });
 
+    listenGameUpdated((resp) => {
       setGame(resp);
     });
 
     sendCreateGame();
-  }, []);
-
-  useEffect(() => {
-    listenGameUpdated((game) => {
-      setGame(game);
-      console.log(game);
-    });
   }, []);
 
   return (
@@ -39,7 +34,7 @@ const Lobby = () => {
                 {game.players.map((player, index) => (
                   <PlayerIcons key={player.playerID} position={index} username={player.name} image={player.photo} />
                 ))}
-                {Array.apply(null, Array(6 - game.players.length)).map((_, index) => {
+                {[...Array(6 - game.players.length)].map((_, index) => {
                   return <PlayerIcons position={game.players.length + index + 1} image="question-icon.svg" />;
                 })}
               </div>

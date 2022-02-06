@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { sendMessage } from 'utils/socketHandler';
 
-const Steven = () => {
+const SocketTester = () => {
   const [event, setEvent] = useState('');
   const [args, setArgs] = useState('');
 
@@ -22,4 +22,4 @@ const Steven = () => {
   );
 };
 
-export default Steven;
+export default SocketTester;

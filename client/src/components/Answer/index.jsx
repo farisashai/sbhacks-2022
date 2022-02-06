@@ -1,10 +1,9 @@
 import './style.less';
 
-const Answer = (letter, answer, fileName) => {
+const Answer = ({ letter, answer, toggle }) => {
   return (
-    <div className="answer-div">
-      <h1 background={fileName}>{letter}:</h1>
-      <h3>{answer}</h3>
+    <div className="ans">
+      <span>{letter}: </span> &nbsp;{answer}
     </div>
   );
 };

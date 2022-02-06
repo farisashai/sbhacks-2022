@@ -14,7 +14,7 @@ import { AppProvider } from 'utils/AppContext';
 import { textToJSON, ocr } from 'utils/ocr';
 
 window.text = textToJSON;
-window.ocr = ocr;
+window.data = ocr();
 
 ReactDOM.render(
   <React.StrictMode>

@@ -18,5 +18,6 @@ export const textToJSON = (text, ascending = true) => {
 
 export const ocr = (text) => {
   // const sortedWordFreq = textToJSON(text).splice(0, 5);
-  console.log(historyQuestions);
+  // console.log(historyQuestions);
+  return historyQuestions;
 };

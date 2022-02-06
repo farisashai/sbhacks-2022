@@ -43,7 +43,7 @@ const Lobby = () => {
               </div>
             </div>
             <div className="lobby-right">
-              <QRCode size="135" className="qr" value={`${window.location.origin}/join?code=${game.gameID}`} />
+              <QRCode size={300} className="qr" value={`${window.location.origin}/join?code=${game.gameID}`} />
               <h1>{game.gameID}</h1>
               <h2>Room Code</h2>
               <CircleButton text="Start" onclick={() => navigate('/play')} />

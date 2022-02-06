@@ -150,6 +150,7 @@ export class ConnectionHandler {
 
         games.set(game.gameID, game);
 
+        this.socket.join(game.gameID);
         this.socket.emit('gameCreated', game.getPublicGame());
     };
 
@@ -190,7 +191,7 @@ export class ConnectionHandler {
 
             game.questionNumber++;
 
-            this.io.emit('questionStarted', {...game.questions[0].getPublicQuestion(), questionNumber: game.questionNumber, questionTotal: game.questionTotal, playerCount: game.players.length });
+            this.io.to(gameID).emit('questionStarted', {...game.questions[0].getPublicQuestion(), questionNumber: game.questionNumber, questionTotal: game.questionTotal, playerCount: game.players.length });
 
             game.currentQuestion = game.questions[0];
 
@@ -221,10 +222,10 @@ export class ConnectionHandler {
             game.guesses = [];
             games.set(gameID, game);
 
-            this.io.emit('questionEnded', { ...question, questionNumber: game.questionNumber, questionTotal: game.questionTotal, playerCount: game.players.length });
+            this.io.to(gameID).emit('questionEnded', { ...question, questionNumber: game.questionNumber, questionTotal: game.questionTotal, playerCount: game.players.length });
 
             setTimeout(() => {
-                this.io.emit('gameResults', { finished: game.questions.length === 0, question, players: game.players });
+                this.io.to(gameID).emit('gameResults', { finished: game.questions.length === 0, question, players: game.players });
 
                 if (game.questions.length !== 0) {
                     setTimeout(() => {
@@ -263,7 +264,7 @@ export class ConnectionHandler {
 
             games.set(gameID, game);
 
-            this.io.emit('gameResults', { finished: game.questions.length === 0, question, players: game.players });
+            this.io.to(gameID).emit('gameResults', { finished: game.questions.length === 0, question, players: game.players });
         }
     };
 
@@ -303,8 +304,9 @@ export class ConnectionHandler {
 
         game.players.push(player);
     
+        this.socket.join(gameID);
         this.socket.emit('succeededJoin', { playerID: player.playerID });
-        this.io.emit('gameUpdated', game.getPublicGame());
+        this.io.to(gameID).emit('gameUpdated', game.getPublicGame());
     };
 
     private handleAnswerQuestion = ({ gameID, playerID, answer }: { gameID: string, playerID: string, answer: "A" | "B" | "C" | "D" }) => {
@@ -326,7 +328,7 @@ export class ConnectionHandler {
 
         games.set(gameID, game);
 
-        this.io.emit('questionUpdated', { answerCount: game.guesses.length });
+        this.io.to(gameID).emit('questionUpdated', { answerCount: game.guesses.length });
     };
 
     public handleConnection = () => {

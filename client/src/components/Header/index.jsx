@@ -3,7 +3,7 @@ import pen from 'assets/pen.svg'
 import scribble from 'assets/scribble.svg'
 import { useNavigate } from 'react-router-dom'
 
-const Header = ({ title, onClick }) => {
+const Header = ({ title, game, onClick }) => {
   const navigate = useNavigate()
   return (
     <div className="header">
@@ -13,7 +13,7 @@ const Header = ({ title, onClick }) => {
       </div>
       <div className="header-right">
         <button className="join-game" onClick={onClick}>
-          {title}
+          {game ? `${game.players.length}/6 Players` : title}
         </button>
         <img src={scribble} alt="" />
       </div>

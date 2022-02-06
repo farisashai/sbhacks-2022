@@ -96,7 +96,7 @@ export class ConnectionHandler {
         game.players.push(player);
     
         this.socket.emit('succeededJoin', { playerID: player.playerID });
-        this.socket.emit('gameUpdated', game);
+        this.socket.broadcast.emit('gameUpdated', game);
     };
 
     private handleAnswerQuestion = () => {
@@ -106,8 +106,7 @@ export class ConnectionHandler {
     };
 
     public handleConnection = () => {
-        
-        // Client to Server Events
+
         this.socket.on('answerQuestion', this.handleAnswerQuestion);
         this.socket.on('createGame', this.handleCreateGame);
         this.socket.on('joinGame', this.handleJoinGame);

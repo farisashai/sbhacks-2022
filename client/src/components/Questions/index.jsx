@@ -42,10 +42,10 @@ const Questions = ({
         </div>
       </div>
       <div className="question-options">
-        <Answer letter="A" answer={answerA} toggle={correct === 'A'} />
-        <Answer letter="B" answer={answerB} toggle={correct === 'B'} />
-        <Answer letter="C" answer={answerC} toggle={correct === 'C'} />
-        <Answer letter="D" answer={answerD} toggle={correct === 'D'} />
+        <Answer letter="A" answer={answerA} toggle={correct === 'A'} boxNum={0} />
+        <Answer letter="B" answer={answerB} toggle={correct === 'B'} boxNum={1} />
+        <Answer letter="C" answer={answerC} toggle={correct === 'C'} boxNum={2} />
+        <Answer letter="D" answer={answerD} toggle={correct === 'D'} boxNum={3} />
       </div>
     </div>
   );

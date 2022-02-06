@@ -53,5 +53,3 @@ const Game = () => {
 };
 
 export default Game;
-
-// Question {questinoState.number}/{questionState.totle}

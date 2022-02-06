@@ -1,15 +1,16 @@
 import './style.less';
 
-const Answer = ({ letter, answer, toggle }) => {
-  const boxes = {
-    one: ['boxA.svg', 'boxAon.svg'],
-    two: ['boxB.svg', 'boxBon.svg'],
-    three: ['boxC.svg', 'boxCon.svg'],
-    four: ['boxD.svg', 'boxDon.svg'],
-  };
+const Answer = ({ letter, answer, toggle, boxNum }) => {
+  const boxes = [
+    ['boxA.svg', 'boxAon.svg'],
+    ['boxB.svg', 'boxBon.svg'],
+    ['boxC.svg', 'boxCon.svg'],
+    ['boxD.svg', 'boxDon.svg'],
+  ];
   return (
-    <div className={`ans ${toggle ? 'correct' : ''}`}>
+    <div className="ans">
       <span>{letter}: </span> &nbsp;{answer}
+      <img src={boxes[boxNum][toggle ? 1 : 0]} alt="" />
     </div>
   );
 };

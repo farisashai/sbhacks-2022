@@ -45,11 +45,6 @@ const UploadNotes = () => {
               if (fileList.length === 0) {
                 notification.open({
                   message: 'Please upload a file to start.',
-                  // description:
-                  //   'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-                  // onClick: () => {
-                  //   console.log('Notification Clicked!')
-                  // },
                 })
               } else {
                 navigate('/lobby')

@@ -16,7 +16,7 @@ const Home = () => {
       image={
         // <DrawSVG duration={500} width="unset" />
 
-        <svg width="259" height="254" viewBox="0 0 259 254" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg scale={0.8} width="259" height="254" viewBox="0 0 259 254" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M42.0532 97.8291C27.3697 101.315 1.81789 105.921 3.04246 126.797C4.29886 148.216 36.0624 143.265 47.702 137.033C60.7537 130.045 69.8861 114.83 54.0268 105.168C46.6172 100.653 37.4087 100.436 29.0174 100.436"
             stroke="black"

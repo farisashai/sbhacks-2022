@@ -2,19 +2,21 @@ import './style.less';
 import CircleButton from 'components/Circle/CircleButton';
 import PlayerIcons from 'components/PlayerIcons';
 import Layout from 'containers/Layout';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { listenGameCreated, listenGameUpdated, sendCreateGame } from 'utils/socketHandler';
 import QRCode from 'qrcode.react';
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from 'utils/AppContext';
 
 const Lobby = () => {
+  const { setGameID } = useContext(AppContext);
   const [game, setGame] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
     listenGameCreated((resp) => {
       setGame(resp);
-      localStorage.setItem('gameID', resp.gameID);
+      setGameID(resp.gameID);
     });
 
     listenGameUpdated((resp) => {

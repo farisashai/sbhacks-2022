@@ -1,5 +1,5 @@
 import './style.less';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import MobileLayout from 'containers/MobileLayout';
 
@@ -17,8 +17,10 @@ import {
 } from 'utils/socketHandler';
 import { notification } from 'antd';
 import { useSearchParams } from 'react-router-dom';
+import { AppContext } from 'utils/AppContext';
 
 const Join = () => {
+  const { gameID, setGameID, playerID, setPlayerID } = useContext(AppContext);
   const [searchParams] = useSearchParams();
   const [gameState, setGameState] = useState('signup');
   const [roomCode, setRoomCode] = useState(searchParams.get('code') || '');
@@ -71,9 +73,10 @@ const Join = () => {
               });
               listenSucceededJoin((resp) => {
                 setGameState('joined');
-                localStorage.setItem('playerID', resp.playerID);
+                setGameID(roomCode);
+                setPlayerID(resp.playerID);
               });
-              sendJoinGame(roomCode, name);
+              sendJoinGame(roomCode.trim().toLocaleUpperCase(), name);
             }}
           />
         </MobileLayout>
@@ -95,7 +98,8 @@ const Join = () => {
               answer={questionState.answerA}
               boxNum={0}
               onClick={() => {
-                sendAnswerQuestion(localStorage.getItem('gameID'), localStorage.getItem('playerID'), 'A');
+                console.log({ gameID, playerID, a: 'A' });
+                sendAnswerQuestion(gameID, playerID, 'A');
                 setGameState('submitted');
               }}
             />
@@ -104,7 +108,7 @@ const Join = () => {
               answer={questionState.answerB}
               boxNum={1}
               onClick={() => {
-                sendAnswerQuestion(localStorage.getItem('gameID'), localStorage.getItem('playerID'), 'B');
+                sendAnswerQuestion(gameID, playerID, 'B');
                 setGameState('submitted');
               }}
             />
@@ -113,7 +117,7 @@ const Join = () => {
               answer={questionState.answerC}
               boxNum={2}
               onClick={() => {
-                sendAnswerQuestion(localStorage.getItem('gameID'), localStorage.getItem('playerID'), 'C');
+                sendAnswerQuestion(gameID, playerID, 'C');
                 setGameState('submitted');
               }}
             />
@@ -122,7 +126,7 @@ const Join = () => {
               answer={questionState.answerD}
               boxNum={3}
               onClick={() => {
-                sendAnswerQuestion(localStorage.getItem('gameID'), localStorage.getItem('playerID'), 'D');
+                sendAnswerQuestion(gameID, playerID, 'D');
                 setGameState('submitted');
               }}
             />

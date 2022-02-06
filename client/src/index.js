@@ -10,19 +10,25 @@ import Game from 'pages/Desktop/Game';
 import SocketTester from 'containers/SocketTester';
 
 import './index.css';
+import { AppProvider } from 'utils/AppContext';
+import textToJSON from 'utils/textToJson';
+
+window.text = textToJSON;
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/upload" element={<UploadNotes />} />
-        <Route exact path="/join" element={<Join />} />
-        <Route exact path="/lobby" element={<Lobby />} />
-        <Route exact path="/play" element={<Game />} />
-        <Route exact path="/socket-tester" element={<SocketTester />} />
-      </Routes>
-    </Router>
+    <AppProvider>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/upload" element={<UploadNotes />} />
+          <Route exact path="/join" element={<Join />} />
+          <Route exact path="/lobby" element={<Lobby />} />
+          <Route exact path="/play" element={<Game />} />
+          <Route exact path="/socket-tester" element={<SocketTester />} />
+        </Routes>
+      </Router>
+    </AppProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

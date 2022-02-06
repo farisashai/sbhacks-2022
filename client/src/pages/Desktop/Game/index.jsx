@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
+import { AppContext } from 'utils/AppContext';
 import {
   listenGameResults,
   listenQuestionEnded,
@@ -15,6 +16,7 @@ import Layout from 'containers/Layout';
 import './style.less';
 
 const Game = () => {
+  const { gameID } = useContext(AppContext);
   const [mode, setMode] = useState(); // question or leaderboard
 
   const [questionState, setQuestionState] = useState({ questionNumber: 0, questionTotal: 0 });
@@ -39,7 +41,8 @@ const Game = () => {
       setMode('leaderboard');
     });
 
-    sendStartGame(localStorage.getItem('gameID'));
+    console.log({ gameID });
+    sendStartGame(gameID);
   }, [listenQuestionStarted, setQuestionState, listenQuestionUpdated]);
 
   return (

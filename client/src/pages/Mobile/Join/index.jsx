@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 
 import MobileLayout from 'containers/MobileLayout';
 
+import MobileAnswer from 'components/MobileAnswer';
 import MobileHeader from 'components/MobileHeader';
 import CircleButton from 'components/Circle/CircleButton';
 import {
@@ -81,7 +82,14 @@ const Join = () => {
     case 'question':
       return (
         <MobileLayout>
-          <MobileHeader header="Question 1" body="" />
+          <div style={{ height: '50px' }} />
+          <MobileHeader header="Question 1 " body="" />
+          <div className="answers">
+            <MobileAnswer letter="A" answer="Meow" toggle={false} boxNum={0} />
+            <MobileAnswer letter="B" answer="Meow" toggle={false} boxNum={1} />
+            <MobileAnswer letter="C" answer="Meow" toggle={false} boxNum={2} />
+            <MobileAnswer letter="D" answer="Meow" toggle={false} boxNum={3} />
+          </div>
         </MobileLayout>
       );
     case 'submitted':
@@ -94,6 +102,7 @@ const Join = () => {
       return (
         <MobileLayout>
           <MobileHeader header="Game Over" body="Look up to see what place you got!" />
+          <div style={{ height: '100px' }} />
           <CircleButton text="Leave" onClick={() => setGameState('signup')} />
         </MobileLayout>
       );

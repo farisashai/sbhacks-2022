@@ -33,7 +33,7 @@ const Home = () => {
       description="Last, answer questions and climb the leaderboard!"
       buttonText="Start"
       back={() => setIndex((index) => index - 1)}
-      next={() => navigate('/lobby')}
+      next={() => navigate('/upload')}
     />,
   ]
 

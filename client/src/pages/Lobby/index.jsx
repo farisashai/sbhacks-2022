@@ -4,11 +4,12 @@ import PlayerIcons from 'components/PlayerIcons'
 import Layout from 'containers/Layout'
 import { useEffect, useState } from 'react'
 import { listenGameCreated, listenGameUpdated,sendCreateGame } from 'utils/socketHandler'
-import yelp from 'assets/yelp-qr.svg'
 import QRCode from 'qrcode.react'
+import { useNavigate } from 'react-router-dom'
 
 function Lobby() {
   const [game, setGame] = useState();
+  const navigate = useNavigate()
 
   useEffect(() => {
     listenGameCreated((resp) => {
@@ -50,12 +51,10 @@ function Lobby() {
               </div>
             </div>
             <div className="lobby-right">
-              {/* <img className='qr' src={yelp} alt="" /> */}
-              <QRCode className='qr' value={`http://localhost:3000/play/${game.gameID}`} />
-
+            <QRCode size="135" className='qr' value={`http://localhost:3000/play/${game.gameID}`}/>
               <h1>{game.gameID}</h1>
               <h2>Room Code</h2>
-              <CircleButton text="Start" onclick={() => {}}/>
+              <CircleButton text="Start" onclick={() => navigate('/play')}/>
             </div>
           </>
         )}

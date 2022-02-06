@@ -108,7 +108,6 @@ export class ConnectionHandler {
 
         game.active = true;
 
-        // TODO: Send first question
         this.doQuestion(gameID);
     };
 

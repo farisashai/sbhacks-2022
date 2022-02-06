@@ -17,7 +17,6 @@
   },
   "scripts": {
     "start": "cross-env ESLINT_NO_DEV_ERRORS=true craco start",
-    "start": "ESLINT_NO_DEV_ERRORS=true craco start",
     "build": "DISABLE_ESLINT_PLUGIN='true' craco build",
     "test": "craco test",
     "eject": "react-scripts eject",

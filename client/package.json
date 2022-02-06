@@ -14,7 +14,8 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "react-svg-drawing": "^1.0.1",
-    "socket.io-client": "^4.4.1"
+    "socket.io-client": "^4.4.1",
+    "tesseract.js": "^2.1.5"
   },
   "scripts": {
     "start": "cross-env ESLINT_NO_DEV_ERRORS=true craco start",

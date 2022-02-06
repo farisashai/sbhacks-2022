@@ -1,17 +1,28 @@
 import './style.less'
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import MobileLayout from 'containers/MobileLayout'
 
 import MobileHeader from 'components/MobileHeader'
 import CircleButton from 'components/Circle/CircleButton'
-import { sendMessage } from 'utils/socketHandler';
+import { sendJoinGame, listenFailedJoin, listenSucceededJoin, listenQuestionStarted} from 'utils/socketHandler';
+import { notification } from 'antd'
+import { useSearchParams } from 'react-router-dom'
 
 const Join = (props) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [gameState, setGameState] = useState('signup')
-  const [roomCode, setRoomCode] = useState('')
+  const [roomCode, setRoomCode] = useState(searchParams.get('code'))
   const [name, setName] = useState('')
 
+  
+  useEffect(() => {
+    if (gameState === 'joined') {
+      listenQuestionStarted(() => {
+        console.log('GAME STARTED')
+      })
+    }
+  }, [gameState])
   switch (gameState) {
     case 'signup':
       return (
@@ -21,11 +32,15 @@ const Join = (props) => {
           <label htmlFor="">Name</label>
           <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="ENTER YOUR NAME" />
           <CircleButton text="Start" onclick={() => {
-            sendMessage('joinGame', {
-            gameID: roomCode,
-            name: name,
-          })
-          setGameState()
+            listenFailedJoin(() => {
+              notification.open({
+                message: 'Failed to join room.',
+              })
+            })
+            listenSucceededJoin(() => {
+              setGameState('joined');
+            })
+            sendJoinGame(roomCode, name)
 
           }}/>
         </MobileLayout>

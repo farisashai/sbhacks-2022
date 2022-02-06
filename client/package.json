@@ -17,7 +17,8 @@
   },
   "scripts": {
     "start": "cross-env ESLINT_NO_DEV_ERRORS=true craco start",
-    "build": "craco build",
+    "start": "ESLINT_NO_DEV_ERRORS=true craco start",
+    "build": "DISABLE_ESLINT_PLUGIN='true' craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
     "lint": "eslint \"**/*.{js,jsx}\" && npx stylelint \"**/*.less\"",

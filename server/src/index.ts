@@ -22,6 +22,6 @@ io.on("connection", (socket: Socket) => {
   new ConnectionHandler(io, socket).handleConnection();
 });
 
-server.listen(4000, () => {
-  console.log("listening on *:4000");
-});
+server.listen(process.env.PORT || 4000);
+
+

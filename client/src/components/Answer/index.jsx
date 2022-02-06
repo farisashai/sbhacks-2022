@@ -9,7 +9,8 @@ const Answer = ({ letter, answer, toggle, boxNum = 0 }) => {
   ];
   return (
     <div className="ans">
-      <span>{letter}: </span> &nbsp;{answer}
+      <span>{letter}: </span> &nbsp;
+      <h3 className="ans-words">{answer}</h3>
       <img src={boxes[boxNum][toggle ? 1 : 0]} alt="" />
     </div>
   );

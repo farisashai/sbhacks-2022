@@ -9,7 +9,8 @@ const MobileAnswer = ({ letter, answer, toggle, boxNum = 0, onClick }) => {
   ];
   return (
     <div className="mobile-ans" onClick={() => onClick && onClick()}>
-      <span>{letter}: </span> &nbsp;{answer}
+      <span>{letter}: </span> &nbsp;
+      <h3 className="ans-words">{answer}</h3>
       <img src={boxes[boxNum][toggle ? 1 : 0]} alt="" />
     </div>
   );

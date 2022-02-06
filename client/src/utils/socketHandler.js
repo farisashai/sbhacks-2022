@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 let SERVER_URL;
 
 if (process.env.NODE_ENV !== 'production') {
-  SERVER_URL = 'http://192.168.1.42:4000';
+  SERVER_URL = 'http://localhost:4000';
 } else {
   SERVER_URL = 'https://quizlash.herokuapp.com/';
 }

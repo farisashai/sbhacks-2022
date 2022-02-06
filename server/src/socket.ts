@@ -3,16 +3,74 @@ import { randomInteger, uuid } from "./utils";
 
 const LIMIT = 6;
 
-interface Player {
+class Player {
     playerID: string;
     name: string;
     photo: string;
+    score: number;
+
+    constructor(name: string) {
+        this.playerID = uuid(4);
+        this.name = name;
+        this.photo = `icon-${randomInteger(1, 6)}.svg`;
+        this.score = 0;
+    }
 }
 
-interface Game {
+class Question {
+    question: string;
+    answerA: string;
+    answerB: string;
+    answerC: string;
+    answerD: string;
+    correct: "A" | "B" | "C" | "D";
+
+    constructor(question: string, answerA: string, answerB: string, answerC: string, answerD: string) {
+        this.question = question;
+        this.answerA = answerA;
+        this.answerB = answerB;
+        this.answerC = answerC;
+        this.answerD = answerD;
+    }
+
+    public getPublicQuestion = () => {
+        return { question: this.question, answerA: this.answerA, answerB: this.answerB, answerC: this.answerC, answerD: this.answerD };
+    }
+
+    public getQuestionAnswer = () => {
+        return { correct: this.correct };
+    }
+}
+
+class Guess {
+    playerID: string;
+    guess: "A" | "B" | "C" | "D";
+
+    constructor(playerID: string, guess: "A" | "B" | "C" | "D") {
+        this.playerID = playerID;
+        this.guess = guess;
+    }
+}
+
+class Game {
     gameID: string;
     players: Player[];
     active: boolean;
+    questions: Question[];
+    currentQuestion: Question;
+    guesses: Guess[];
+    timeoutID: NodeJS.Timeout;
+
+    constructor() {
+        this.gameID = uuid(4);
+        this.players = [];
+        this.active = false;
+        this.currentQuestion = null;
+    }
+
+    public getPublicGame = () => {
+        return { gameID: this.gameID, players: this.players, active: this.active };
+    };
 }
 
 const games = new Map<string, Game>();
@@ -31,11 +89,11 @@ export class ConnectionHandler {
     private handleCreateGame = () => {
         console.log("handleCreateGame");
 
-        const game: Game = { gameID: uuid(4), players: [], active: false };
+        const game = new Game();
 
         games.set(game.gameID, game);
 
-        this.socket.emit('gameCreated', game);
+        this.socket.emit('gameCreated', game.getPublicGame());
     };
 
     private handleStartGame = ({ gameID }: { gameID: string }) => {
@@ -51,12 +109,76 @@ export class ConnectionHandler {
         game.active = true;
 
         // TODO: Send first question
+        this.doQuestion(gameID);
     };
 
-    private handleSkipQuestion = () => {
+    private doQuestion = (gameID: string) => {
+        if (!games.has(gameID)) {
+            console.log("doQuestion", "ERROR: unable to find game")
+            return;
+        }
+
+        const game = games.get(gameID);
+
+        if (game.questions.length !== 0) {
+            this.socket.broadcast.emit('questionStarted', game.questions[0].getPublicQuestion());
+
+            game.currentQuestion = game.questions[0];
+
+            game.questions = game.questions.splice(0, 1);
+            games.set(gameID, game);
+        }
+
+        const timeoutID = setTimeout(() => {
+            const game = games.get(gameID);
+
+            for (let i = 0; i < game.guesses.length; i += 1) {
+                const guess = game.guesses[i];
+
+                const playerIdx = game.players.findIndex((player) => player.playerID === guess.playerID);
+
+                if (playerIdx === -1) {
+                    continue;
+                }
+
+                if (guess.guess === game.currentQuestion.correct) {
+                    game.players[playerIdx].score += 100 * (6 - i);
+                }
+            }
+
+            const question = game.currentQuestion;
+
+            game.currentQuestion = null;
+            game.guesses = [];
+            games.set(gameID, game);
+
+            this.socket.broadcast.emit('questionEnded', { question, answers: 0, players: game.players });
+        }, 10000);
+
+        game.timeoutID = timeoutID;
+        games.set(gameID, game);
+    };
+
+    private handleSkipQuestion = ({ gameID } : { gameID: string }) => {
         console.log("handleSkipQuestion");
-    
-        this.socket.emit('Ack: handleSkipQuestion', '');
+
+        if (!games.has(gameID)) {
+            console.log("handleSkipQuestion", "ERROR: unable to find game")
+            return;
+        }
+
+        const game = games.get(gameID);
+
+        if (game.currentQuestion) {
+            const question = game.currentQuestion;
+
+            game.currentQuestion = null;
+            game.guesses = [];
+
+            games.set(gameID, game);
+
+            this.socket.broadcast.emit('questionEnded', { question, answers: 0, players: game.players });
+        }
     };
 
     // Player to Server Events
@@ -91,18 +213,32 @@ export class ConnectionHandler {
             return;
         }
 
-        const player = { playerID: uuid(4), name, photo: `icon-${randomInteger(1, 6)}.svg` };
+        const player: Player = new Player(name);
 
         game.players.push(player);
     
         this.socket.emit('succeededJoin', { playerID: player.playerID });
-        this.socket.broadcast.emit('gameUpdated', game);
+        this.socket.broadcast.emit('gameUpdated', game.getPublicGame());
     };
 
-    private handleAnswerQuestion = () => {
+    private handleAnswerQuestion = ({ gameID, playerID, answer }: { gameID: string, playerID: string, answer: "A" | "B" | "C" | "D" }) => {
         console.log("handleAnswerQuestion");
-    
-        this.socket.emit('Ack: handleAnswerQuestion', '');
+
+        if (!gameID || !playerID || !answer) {
+            console.log("handleAnswerQuestion", "ERROR: missing variable")
+            return;
+        }
+
+        if (!games.has(gameID)) {
+            console.log("handleAnswerQuestion", "ERROR: unable to find game")
+            return;
+        }
+        
+        const game = games.get(gameID);
+
+        game.guesses.push(new Guess(playerID, answer));
+
+        games.set(gameID, game);
     };
 
     public handleConnection = () => {

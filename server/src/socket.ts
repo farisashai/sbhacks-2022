@@ -1,31 +1,5 @@
 import { Server, Socket } from "socket.io";
-
-export interface ServerToClientEvents {
-    failedJoin: () => void;
-    gameCreated: () => void;
-    gameResults: () => void;
-    gameUpdated: () => void;
-    questionEnded: () => void;
-    questionStarted: () => void;
-    questionUpdated: () => void;
-    succeededJoin: () => void;
-}
-
-export interface ClientToServerEvents {
-    answerQuestion: () => void;
-    createGame: () => void;
-    joinGame: () => void;
-    skipQuestion: () => void;
-    startGame: () => void;
-}
-
-export interface InterServerEvents {
-
-}
-
-export interface SocketData {
-
-}
+import { uuid } from "./utils";
 
 const LIMIT = 6;
 
@@ -52,19 +26,23 @@ export class ConnectionHandler {
 
     // Host to Server Events
 
-    private handleCreateGame: ClientToServerEvents["createGame"] = () => {
+    private handleCreateGame = () => {
         console.log("handleCreateGame");
-    
-        this.socket.emit('Ack: handleCreateGame', '');
+
+        const game: Game = { code: uuid(4), players: [] };
+
+        games.set(game.code, game);
+
+        this.socket.emit('gameCreated', game);
     };
 
-    private handleStartGame: ClientToServerEvents["startGame"] = () => {
+    private handleStartGame = () => {
         console.log("handleStartGame");
     
         this.socket.emit('Ack: handleStartGame', '');
     };
 
-    private handleSkipQuestion: ClientToServerEvents["skipQuestion"] = () => {
+    private handleSkipQuestion = () => {
         console.log("handleSkipQuestion");
     
         this.socket.emit('Ack: handleSkipQuestion', '');
@@ -72,18 +50,18 @@ export class ConnectionHandler {
 
     // Player to Server Events
 
-    private handleJoinGame: ClientToServerEvents["joinGame"] = () => {
+    private handleJoinGame = () => {
         console.log("handleJoinGame");
     
         this.socket.emit('Ack: handleJoinGame', '');
     };
 
-    private handleAnswerQuestion: ClientToServerEvents["answerQuestion"] = () => {
+    private handleAnswerQuestion = () => {
         console.log("handleAnswerQuestion");
     
         this.socket.emit('Ack: handleAnswerQuestion', '');
     };
-    
+
     public handleConnection = () => {
         
         // Client to Server Events

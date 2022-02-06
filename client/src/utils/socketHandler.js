@@ -26,6 +26,16 @@ export const sendStartGame = () => {
     connection.emit('startGame');
 }
 
+// { answerCount }
+export const listenQuestionUpdated = (callback) => {
+    connection.removeAllListeners('questionUpdated');
+    connection.on('questionUpdated', callback);
+};
+
+export const sendSkipQuestion = () => {
+    connection.emit('skipQuestion');
+}
+
 // Player-Specific Commands
 
 // { gameID: string, name: string }
@@ -58,10 +68,15 @@ export const listenQuestionStarted = (callback) => {
     connection.on('questionStarted', callback);
 }
 
-// { question: { question, answerA, answerB, answerC, answerD, correct }, answerCount, players: { playerID, name, photo, score }[] }
 export const listenQuestionEnded = (callback) => {
     connection.removeAllListeners('questionEnded');
     connection.on('questionEnded', callback);
+}
+
+// { finished, question: { question, answerA, answerB, answerC, answerD, correct }, answerCount, players: { playerID, name, photo, score }[] }
+export const listenGameResults = (callback) => {
+    connection.removeAllListeners('gameResults');
+    connection.on('gameResults', callback);
 }
 
 // Testing Commands

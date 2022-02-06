@@ -151,7 +151,17 @@ export class ConnectionHandler {
             game.guesses = [];
             games.set(gameID, game);
 
-            this.socket.broadcast.emit('questionEnded', { question, answerCount: 0, players: game.players });
+            this.socket.broadcast.emit('questionEnded');
+
+            setTimeout(() => {
+                this.socket.broadcast.emit('gameResults', { finished: game.questions.length === 0, question, answerCount: 0, players: game.players });
+
+                if (game.questions.length !== 0) {
+                    setTimeout(() => {
+                        this.doQuestion(gameID);
+                    }, 5000);
+                }
+            }, 5000);
         }, 10000);
 
         game.timeoutID = timeoutID;
@@ -238,6 +248,8 @@ export class ConnectionHandler {
         game.guesses.push(new Guess(playerID, answer));
 
         games.set(gameID, game);
+
+        this.socket.broadcast.emit('questionUpdated', { answerCount: game.guesses.length });
     };
 
     public handleConnection = () => {

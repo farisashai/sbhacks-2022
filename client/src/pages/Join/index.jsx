@@ -5,23 +5,29 @@ import MobileLayout from 'containers/MobileLayout'
 
 import MobileHeader from 'components/MobileHeader'
 import CircleButton from 'components/Circle/CircleButton'
+import { sendMessage } from 'utils/socketHandler';
 
 const Join = (props) => {
   const [gameState, setGameState] = useState('signup')
+  const [roomCode, setRoomCode] = useState('')
+  const [name, setName] = useState('')
 
   switch (gameState) {
     case 'signup':
       return (
         <MobileLayout>
-          {/* <MobileHeader
-            header="You’re in!"
-            body="Hold tight while players join..."
-          /> */}
           <label htmlFor="">Room Code</label>
-          <input type="text" placeholder="ENTER 4 LETTER GAME CODE" />
+          <input value={roomCode} onChange={e => setRoomCode(e.target.value)} type="text" placeholder="ENTER 4 LETTER GAME CODE" />
           <label htmlFor="">Name</label>
-          <input type="text" placeholder="ENTER YOUR NAME" />
-          <CircleButton text="Start" onclick={() => {}}/>
+          <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="ENTER YOUR NAME" />
+          <CircleButton text="Start" onclick={() => {
+            sendMessage('joinGame', {
+            gameID: roomCode,
+            name: name,
+          })
+          setGameState()
+
+          }}/>
         </MobileLayout>
       )
     case 'joined':

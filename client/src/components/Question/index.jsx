@@ -1,4 +1,4 @@
-// import './style.less'
+import './style.less'
 
 const Question = (number, question) => {
     return (

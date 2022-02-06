@@ -18,19 +18,27 @@
   }
 }
 
-.header-left {
-  display: flex;
-  cursor: pointer;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
 
-  h1 {
-    font-weight: 600;
-    font-size: 56px;
-    margin: 0 0 0 6px;
-    padding: 0;
-  }
+
+.header-left {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    h1 {
+		font-weight: 600;
+		font-size: 56px;
+        margin: 0 0 0 6px;
+        padding: 0;
+    }
+
+    .scribble2 {
+        position: absolute;
+        bottom: -10%;
+        left: 25%;
+    }
 }
 
 .header-right {

@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom'
+
 import './style.less'
 import pen from 'assets/pen.svg'
 import scribble from 'assets/scribble.svg'
-import { useNavigate } from 'react-router-dom'
+import scribble2 from 'assets/scribble2.svg'
 
 const Header = ({ title, game, onClick }) => {
   const navigate = useNavigate()
@@ -10,6 +12,7 @@ const Header = ({ title, game, onClick }) => {
       <div onClick={() => navigate('/')} className="header-left">
         <img src={pen} alt="pencil" />
         <h1>Quizlash</h1>
+        <img className="scribble2" src={scribble2} alt="scribble" />
       </div>
       <div className="header-right">
         <button className="join-game" onClick={onClick}>
@@ -17,8 +20,7 @@ const Header = ({ title, game, onClick }) => {
         </button>
         <img src={scribble} alt="" />
       </div>
-    </div>
-  )
+    </div>);
 }
 
 export default Header

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from 'pages/Home'
 import UploadNotes from 'pages/UploadNotes'
 import Lobby from 'pages/Lobby'
+import Join from 'pages/Join'
 import Questions from 'pages/Questions'
 import Steven from 'containers/Steven'
 
@@ -16,6 +17,7 @@ ReactDOM.render(
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/upload" element={<UploadNotes />} />
+        <Route exact path="/join" element={<Join />} />
         <Route exact path="/lobby" element={<Lobby />} />
         <Route exact path="/play" element={<Questions />} />
         <Route exact path="/steven" element={<Steven />} />

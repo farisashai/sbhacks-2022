@@ -1,0 +1,33 @@
+@import '../../vars.less';
+@import '~antd/dist/antd.less';
+
+
+@keyframes colors {
+  0% {
+    background-color: @yellow;
+  }
+  33% {
+    background-color: @green;
+  }
+  66% {
+    background-color: @blue;
+  }
+  100% {
+    background-color: @pink;
+  }
+}
+
+
+.circle {
+  width: 718px;
+  height: 718px;
+  background-color: @yellow;
+  border-radius: 50%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  animation: colors 10s infinite alternate-reverse;
+}

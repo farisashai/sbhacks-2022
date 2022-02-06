@@ -2260,6 +2260,11 @@ ajv@^8.0.0, ajv@^8.0.1, ajv@^8.6.0, ajv@^8.8.0:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
+animejs@^3.1.0:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/animejs/-/animejs-3.2.1.tgz#de9fe2e792f44a777a7fdf6ae160e26604b0cdda"
+  integrity sha512-sWno3ugFryK5nhiDm/2BKeFCpZv7vzerWUcUPyAZLDhMek3+S/p418ldZJbJXo5ZUOpfm2kP2XRO4NJcULMy9A==
+
 ansi-escapes@^4.2.1, ansi-escapes@^4.3.1:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-4.3.2.tgz#6b2291d1db7d98b6521d5f1efa42d0f3a9feb65e"
@@ -7986,6 +7991,14 @@ react-scripts@5.0.0:
     workbox-webpack-plugin "^6.4.1"
   optionalDependencies:
     fsevents "^2.3.2"
+
+react-svg-drawing@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-svg-drawing/-/react-svg-drawing-1.0.1.tgz#0e3fd90d059573ae5ff1a03206e60c59c38fc9ca"
+  integrity sha512-WE+drkBTfWOJWDrOtbZrL+JTSX8Sqw3QQueyERPbE/OdGay8QYG9PIG8KJDrxfSTXU8z2TeDWW4KDRx0NMkMjQ==
+  dependencies:
+    animejs "^3.1.0"
+    prop-types "^15.7.2"
 
 react@^17.0.2:
   version "17.0.2"

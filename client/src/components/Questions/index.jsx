@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 // import Question from '../Question';
 import scribble from 'assets/scribble3.svg';
-// import circle from 'assets/circle2.svg';
+import circle from 'assets/circle2.svg';
 import Answer from '../Answer';
 import './style.less';
 
@@ -33,7 +33,10 @@ const Questions = ({
         <h3>{question}</h3>
       </div>
       <div className="time-answer-div">
-        <span className="timer">{time} sec</span>
+        <div className="time-div">
+          <span className="timer">{time} sec</span>
+          <img src={circle} alt="" />
+        </div>
         <div className="ans-count">
           <span className="num-answers">
             {answerCount}/{playerCount} answers

@@ -13,6 +13,7 @@ import {
   listenQuestionStarted,
   listenQuestionEnded,
   listenGameResults,
+  sendAnswerQuestion,
 } from 'utils/socketHandler';
 import { notification } from 'antd';
 import { useSearchParams } from 'react-router-dom';
@@ -23,11 +24,15 @@ const Join = () => {
   const [roomCode, setRoomCode] = useState(searchParams.get('code') || '');
   const [name, setName] = useState('');
 
+  const [questionState, setQuestionState] = useState({ questionNumber: 0, questionTotal: 0 });
+
   useEffect(() => {
-    listenQuestionStarted(() => {
+    listenQuestionStarted((resp) => {
+      setQuestionState(resp);
       setGameState('question');
     });
-    listenQuestionEnded(() => {
+    listenQuestionEnded((resp) => {
+      setQuestionState(resp);
       setGameState('submitted');
     });
     listenGameResults((resp) => {
@@ -59,9 +64,9 @@ const Join = () => {
           <CircleButton
             text="Start"
             onclick={() => {
-              listenFailedJoin(() => {
+              listenFailedJoin((resp) => {
                 notification.open({
-                  message: 'Failed to join room.',
+                  message: resp.message,
                 });
               });
               listenSucceededJoin((resp) => {
@@ -85,10 +90,42 @@ const Join = () => {
           <div style={{ height: '50px' }} />
           <MobileHeader header="Question 1 " body="" />
           <div className="answers">
-            <MobileAnswer letter="A" answer="Meow" toggle={false} boxNum={0} />
-            <MobileAnswer letter="B" answer="Meow" toggle={false} boxNum={1} />
-            <MobileAnswer letter="C" answer="Meow" toggle={false} boxNum={2} />
-            <MobileAnswer letter="D" answer="Meow" toggle={false} boxNum={3} />
+            <MobileAnswer
+              letter="A"
+              answer={questionState.answerA}
+              boxNum={0}
+              onClick={() => {
+                sendAnswerQuestion(localStorage.getItem('gameID'), localStorage.getItem('playerID'), 'A');
+                setGameState('submitted');
+              }}
+            />
+            <MobileAnswer
+              letter="B"
+              answer={questionState.answerB}
+              boxNum={1}
+              onClick={() => {
+                sendAnswerQuestion(localStorage.getItem('gameID'), localStorage.getItem('playerID'), 'B');
+                setGameState('submitted');
+              }}
+            />
+            <MobileAnswer
+              letter="C"
+              answer={questionState.answerC}
+              boxNum={2}
+              onClick={() => {
+                sendAnswerQuestion(localStorage.getItem('gameID'), localStorage.getItem('playerID'), 'C');
+                setGameState('submitted');
+              }}
+            />
+            <MobileAnswer
+              letter="D"
+              answer={questionState.answerD}
+              boxNum={3}
+              onClick={() => {
+                sendAnswerQuestion(localStorage.getItem('gameID'), localStorage.getItem('playerID'), 'D');
+                setGameState('submitted');
+              }}
+            />
           </div>
         </MobileLayout>
       );

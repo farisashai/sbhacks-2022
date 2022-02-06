@@ -4,15 +4,14 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   height: 100vh;
-  padding-top: 10rem;
   width: 100%;
 }
 
 .leaderboard-left {
-  height: 100%;
-  padding: 4rem;
+  height: calc(100% - 10rem);
+  margin-top: 10rem;
+  padding: 0 4rem;
   width: 100%;
-  // background-color: red;
 
   h1 {
     color: #000;
@@ -25,6 +24,7 @@
 
     letter-spacing: -0.05em;
     line-height: 112.5%;
+    margin: 0;
   }
 }
 
@@ -32,15 +32,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  height: calc(100% - 3rem);
+  height: calc(100% - 5rem);
 }
 
 .leaderboard-right {
   align-items: center;
   display: flex;
   flex-flow: column nowrap;
-  height: 100%;
   justify-content: center;
-  padding: 1rem;
-  width: 100%;
 }

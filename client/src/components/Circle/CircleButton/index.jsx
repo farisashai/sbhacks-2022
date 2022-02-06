@@ -6,11 +6,8 @@ import './style.less'
 
 const CircleButton = ({ text, onclick }) => {
   return (
-    <div className="button">
-      <button onClick={() => {
-        onclick()
-        console.log('clicked')
-      }}>{text}</button>
+    <div onclick={onclick} className="button">
+      <button >{text}</button>
       <img src={arrow} alt="arrow" />
       <img className="create-circle" src={circle} alt="circle" />
     </div>

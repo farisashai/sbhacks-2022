@@ -8,3 +8,7 @@ body {
   font-style: normal;
   letter-spacing: -0.05em;
 }
+
+button {
+  cursor: pointer;
+}

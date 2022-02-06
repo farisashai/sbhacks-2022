@@ -7,16 +7,21 @@ import MobileHeader from 'components/MobileHeader'
 import CircleButton from 'components/Circle/CircleButton'
 
 const Join = (props) => {
-  const [gameState, setGameState] = useState('joined')
+  const [gameState, setGameState] = useState('signup')
 
   switch (gameState) {
     case 'signup':
       return (
         <MobileLayout>
-          <MobileHeader
+          {/* <MobileHeader
             header="You’re in!"
             body="Hold tight while players join..."
-          />
+          /> */}
+          <label htmlFor="">Room Code</label>
+          <input type="text" placeholder="ENTER 4 LETTER GAME CODE" />
+          <label htmlFor="">Name</label>
+          <input type="text" placeholder="ENTER YOUR NAME" />
+          <CircleButton text="Start" onclick={() => {}}/>
         </MobileLayout>
       )
     case 'joined':

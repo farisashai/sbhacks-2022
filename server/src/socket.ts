@@ -151,7 +151,7 @@ export class ConnectionHandler {
             game.guesses = [];
             games.set(gameID, game);
 
-            this.socket.broadcast.emit('questionEnded', { question, answers: 0, players: game.players });
+            this.socket.broadcast.emit('questionEnded', { question, answerCount: 0, players: game.players });
         }, 10000);
 
         game.timeoutID = timeoutID;

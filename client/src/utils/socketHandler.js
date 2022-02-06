@@ -10,17 +10,21 @@ export const sendCreateGame = () => {
     connection.emit('createGame');
 }
 
-// { gameID: string; players: Player[]; active: boolean; }
+// { gameID, players: { playerID, name, photo, score }[], active }
 export const listenGameCreated = (callback) => {
     connection.removeAllListeners('gameCreated');
     connection.on('gameCreated', callback);
 };
 
-// { gameID: string; players: Player[]; active: boolean; }
+// { gameID, players: { playerID, name, photo, score }[], active }
 export const listenGameUpdated = (callback) => {
     connection.removeAllListeners('gameUpdated');
     connection.on('gameUpdated', callback);
 };
+
+export const sendStartGame = () => {
+    connection.emit('startGame');
+}
 
 // Player-Specific Commands
 
@@ -29,23 +33,45 @@ export const sendJoinGame = (gameID, name) => {
     connection.emit('joinGame', { gameID, name });
 };
 
-// { message: string }
+// { message }
 export const listenFailedJoin = (callback) => {
     connection.removeAllListeners('failedJoin');
     connection.on('failedJoin', callback);
 }
 
-// { playerID: string }
+// { playerID }
 export const listenSucceededJoin = (callback) => {
     connection.removeAllListeners('succeededJoin');
     connection.on('succeededJoin', callback);
 }
 
-// TESTING
+// { gameID: string, playerID: string, answer: "A" | "B" | "C" | "D" }
+export const sendAnswerQuestion = (gameID, playerID, answer) => {
+    connection.emit('answerQuestion', { gameID, playerID, answer });
+};
+
+// Shared Commands
+
+// { question, answerA, answerB, answerC, answerD }
+export const listenQuestionStarted = (callback) => {
+    connection.removeAllListeners('questionStarted');
+    connection.on('questionStarted', callback);
+}
+
+// { question: { question, answerA, answerB, answerC, answerD, correct }, answerCount, players: { playerID, name, photo, score }[] }
+export const listenQuestionEnded = (callback) => {
+    connection.removeAllListeners('questionEnded');
+    connection.on('questionEnded', callback);
+}
+
+// Testing Commands
+
+// Listen for all events
 connection.onAny((event, ...args) => {
     console.log(`got ${event}, ${JSON.stringify(args)}`);
 });
 
+// Send a custom event message
 export const sendMessage = (event, args) => {
     connection.emit(event, args);
 };

@@ -1,6 +1,7 @@
 import './style.less';
 import { Upload, notification } from 'antd';
 import CircleButton from 'components/Circle/CircleButton';
+import OcrReader from 'components/OcrReader';
 import Layout from 'containers/Layout';
 import { UploadOutlined } from '@ant-design/icons';
 import { useState } from 'react';
@@ -10,9 +11,25 @@ const UploadNotes = () => {
   const [fileList, setFileList] = useState([]);
   const navigate = useNavigate();
 
+  const [ocrData, setOcrData] = useState('');
+
+  const onReadOcrData = (ocrData) => {
+    setOcrData(ocrData);
+  };
+
+  const onRemoveClicked = () => {
+    setOcrData('');
+  };
+
   return (
     <Layout>
       <div className="square">
+        <OcrReader
+          ocrData={ocrData}
+          setOcrData={setOcrData}
+          onReadOcrData={onReadOcrData}
+          onRemoveClicked={onRemoveClicked}
+        />
         <h1>Upload Notes</h1>
         <Upload
           fileList={fileList}

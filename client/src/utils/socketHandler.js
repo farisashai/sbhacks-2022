@@ -1,6 +1,14 @@
 import { io } from 'socket.io-client';
 
-const SERVER_URL = 'http://192.168.1.42:4000';
+console.log('hello');
+
+let SERVER_URL;
+
+if (process.env.NODE_ENV !== 'production') {
+  SERVER_URL = 'https://localhost:4000';
+} else {
+  SERVER_URL = 'https://quizlash.herokuapp.com/';
+}
 
 const connection = io(SERVER_URL);
 

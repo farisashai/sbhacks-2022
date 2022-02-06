@@ -6,7 +6,8 @@ import Home from 'pages/Home'
 import UploadNotes from 'pages/UploadNotes'
 import Lobby from 'pages/Lobby'
 import Join from 'pages/Join'
-import Steven from 'containers/Steven';
+import Questions from 'pages/Questions'
+import Steven from 'containers/Steven'
 
 import './index.css'
 
@@ -18,6 +19,7 @@ ReactDOM.render(
         <Route exact path="/upload" element={<UploadNotes />} />
         <Route exact path="/join" element={<Join />} />
         <Route exact path="/lobby" element={<Lobby />} />
+        <Route exact path="/play" element={<Questions />} />
         <Route exact path="/steven" element={<Steven />} />
       </Routes>
     </Router>

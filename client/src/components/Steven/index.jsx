@@ -15,7 +15,7 @@ const Steven = () => {
             <input type="text" value={args} onChange={(e) => setArgs(e.target.value)}/>
             <br />
             <br />
-            <button type='button' onClick={() => sendMessage(event, args)}>Send Message</button>
+            <button type='button' onClick={() => sendMessage(event, JSON.parse(args))}>Send Message</button>
         </div>
     );
 }

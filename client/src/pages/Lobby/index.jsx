@@ -1,52 +1,64 @@
 import './style.less'
-import Header from 'components/Header'
 import CircleButton from 'components/Circle/CircleButton'
 import PlayerIcons from 'components/PlayerIcons'
 import Layout from 'containers/Layout'
 import { useEffect, useState } from 'react'
-import { listenGameCreated, sendCreateGame } from 'utils/socketHandler'
-import yelp from 'assets/yelp-qr.svg'
+import { listenGameCreated, listenGameUpdated,sendCreateGame } from 'utils/socketHandler'
+import QRCode from 'qrcode.react'
+import { useNavigate } from 'react-router-dom'
+
 function Lobby() {
-  const [code, setCode] = useState('');
+  const [game, setGame] = useState();
+  const navigate = useNavigate()
 
   useEffect(() => {
     listenGameCreated((resp) => {
       console.log(resp);
 
-      setCode(resp.code);
+      setGame(resp);
     });
 
     sendCreateGame();
-  })
+  }, [])
+
+  useEffect(() => {
+    listenGameUpdated((game) => {
+      setGame(game)
+      console.log(game);
+    })
+  }, [])
+
 
   return (
-    <Layout>
+    <Layout game={game}>
       <div className="lobby-container">
-        <div className="lobby-left"></div>
-        <div className="lobby-right">
-          <img src={yelp} alt="" />
-          <h1>M30A</h1>
-          <h2>Room Code</h2>
-          <CircleButton />
-        </div>
+        {game && 
+        (<>
+            <div className="lobby-left">
+              <h1>Scan the QR code to join!</h1>
+              <div className="players">
+                {game.players.map((player, index) => (
+                  <PlayerIcons 
+                  key={player.playerID} 
+                  position={index} 
+                  username={player.name} 
+                  image={player.photo} 
+                  />
+                ))}
+                {Array.apply(null, Array(6 - game.players.length)).map((_, index) => {
+                  return <PlayerIcons position={game.players.length + index + 1} image={'question-icon.svg'}/>
+                })}
+              </div>
+            </div>
+            <div className="lobby-right">
+            <QRCode size="135" className='qr' value={`http://localhost:3000/play/${game.gameID}`}/>
+              <h1>{game.gameID}</h1>
+              <h2>Room Code</h2>
+              <CircleButton text="Start" onclick={() => navigate('/play')}/>
+            </div>
+          </>
+        )}
       </div>
-      {/* <div className="StartingPage">
-        <h1>Scan the QR code to join!</h1>
-        <div className="players">
-          <PlayerIcons name="open" />
-          <PlayerIcons name="open" />
-          <PlayerIcons name="open" />
-          <PlayerIcons name="open" />
-          <PlayerIcons name="open" />
-          <PlayerIcons name="open" />
-        </div>
-        <div className="qr-div">
-          <img alt="qr code" />
-          <h1>ABCD</h1>
-          <h3>Room Code</h3>
-          <CircleButton text="Start" />
-        </div>
-      </div> */}
     </Layout>
   )
 }

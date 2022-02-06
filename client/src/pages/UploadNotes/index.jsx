@@ -1,15 +1,14 @@
-import './style.less'
-import { Upload } from 'antd'
-import CircleButton from 'components/Circle/CircleButton'
-import Layout from 'containers/Layout'
-import { UploadOutlined } from '@ant-design/icons'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { notification } from 'antd'
+import './style.less';
+import { Upload, notification } from 'antd';
+import CircleButton from 'components/Circle/CircleButton';
+import Layout from 'containers/Layout';
+import { UploadOutlined } from '@ant-design/icons';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const UploadNotes = () => {
-  const [fileList, setFileList] = useState([])
-  const navigate = useNavigate()
+function UploadNotes() {
+  const [fileList, setFileList] = useState([]);
+  const navigate = useNavigate();
 
   return (
     <Layout>
@@ -18,19 +17,19 @@ const UploadNotes = () => {
         <Upload
           fileList={fileList}
           onChange={({ file }) => {
-            console.log(file)
-            setFileList([{ ...file.originfileObj, name: file.name }])
+            console.log(file);
+            setFileList([{ ...file.originfileObj, name: file.name }]);
           }}
           maxCount={1}
           onRemove={() => {
-            setFileList([])
+            setFileList([]);
             // TODO: we can't remove files right now
-            return true
+            return true;
           }}
           customRequest={({ file, onSuccess }) => {
             setTimeout(() => {
-              onSuccess('ok')
-            }, 0)
+              onSuccess('ok');
+            }, 0);
           }}
         >
           <button className="upload-btn">
@@ -45,9 +44,9 @@ const UploadNotes = () => {
               if (fileList.length === 0) {
                 notification.open({
                   message: 'Please upload a file to start.',
-                })
+                });
               } else {
-                navigate('/lobby')
+                navigate('/lobby');
               }
             }}
             text="Start"
@@ -55,7 +54,7 @@ const UploadNotes = () => {
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
-export default UploadNotes
+export default UploadNotes;

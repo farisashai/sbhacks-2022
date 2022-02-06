@@ -1,12 +1,12 @@
-import './style.less'
+import './style.less';
 
-const Answer = (letter, answer, fileName) => {
+function Answer(letter, answer, fileName) {
   return (
-      <div className="answer-div">
-        <h1 background={fileName}>{letter}:</h1>
-        <h3>{answer}</h3>
-      </div>
-  )
+    <div className="answer-div">
+      <h1 background={fileName}>{letter}:</h1>
+      <h3>{answer}</h3>
+    </div>
+  );
 }
 
-export default Answer
+export default Answer;

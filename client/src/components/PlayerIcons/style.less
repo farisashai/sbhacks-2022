@@ -1,29 +1,29 @@
 @keyframes bounce {
-    0% {
-        transform: rotate(-5.18deg);
-    }
+  0% {
+    transform: rotate(-5.18deg);
+  }
 
-    100% {
-        transform: rotate(6deg);
-    }
+  100% {
+    transform: rotate(6deg);
+  }
 }
+
 .player {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center;
-    width: 25rem;
-    p {
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 36px;
-        line-height: 112.5%;
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  width: 25rem;
 
-        text-align: center;
-        letter-spacing: -0.05em;
-
-        color: #000000;
-        animation: bounce 1s alternate-reverse infinite ease-in-out;
-    }
+  p {
+    animation: bounce 1s alternate-reverse infinite ease-in-out;
+    color: #000;
+    font-family: Poppins;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: -0.05em;
+    line-height: 112.5%;
+    text-align: center;
+  }
 }

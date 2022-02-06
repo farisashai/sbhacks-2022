@@ -1,55 +1,56 @@
-@import '../../vars.less';
+@import "../../vars.less";
 
 .square {
-  width: 40rem;
-  height: 40rem;
+  align-items: center;
   background-color: #ffa8b2c2;
+  border-radius: 5%;
   display: flex;
   flex-flow: column nowrap;
+  height: 40rem;
   justify-content: center;
-  align-items: center;
-  border-radius: 5%;
+  width: 40rem;
 
   h1 {
     font-family: Poppins;
+    font-size: 78.468px;
     font-style: normal;
     font-weight: 600;
-    font-size: 78.468px;
+    letter-spacing: -0.05em;
     line-height: 88px;
     text-align: center;
-    letter-spacing: -0.05em;
   }
 }
 
 .button-group {
-  width: 100%;
+  align-items: center;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
   margin-top: 3rem;
-  align-items: center;
+  width: 100%;
 }
 
 .button-group button {
-  border: none;
   background: none;
+  border: none;
   font-family: Poppins;
+  font-size: 28px;
   font-style: normal;
   font-weight: 600;
-  font-size: 28px;
 }
 
 .upload-btn {
   background-color: #0000;
   border: none;
-  transition: 0.3s ease-in-out;
   margin-bottom: 3rem;
+  transition: 0.3s ease-in-out;
+
   svg {
-    width: 10rem;
     height: 10rem;
+    width: 10rem;
   }
 
   :hover {
-    color: rgba(84, 84, 84, 0.648);
+    color: rgba(84, 84, 84, 64.8%);
   }
 }

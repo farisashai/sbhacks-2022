@@ -1,7 +1,7 @@
 import Steven from 'components/Steven';
 
-const StevenContainer = () => {
-    return (<Steven />);
-};
+function StevenContainer() {
+  return <Steven />;
+}
 
 export default StevenContainer;

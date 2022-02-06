@@ -1,12 +1,12 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
-import './style.less'
-import pen from 'assets/pen.svg'
-import scribble from 'assets/scribble.svg'
-import scribble2 from 'assets/scribble2.svg'
+import './style.less';
+import pen from 'assets/pen.svg';
+import scribble from 'assets/scribble.svg';
+import scribble2 from 'assets/scribble2.svg';
 
-const Header = ({ title, game, onClick }) => {
-  const navigate = useNavigate()
+function Header({ title, game, onClick }) {
+  const navigate = useNavigate();
   return (
     <div className="header">
       <div onClick={() => navigate('/')} className="header-left">
@@ -20,7 +20,8 @@ const Header = ({ title, game, onClick }) => {
         </button>
         <img src={scribble} alt="" />
       </div>
-    </div>);
+    </div>
+  );
 }
 
-export default Header
+export default Header;

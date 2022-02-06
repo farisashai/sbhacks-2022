@@ -1,33 +1,33 @@
-@import '../../vars.less';
-@import '~antd/dist/antd.less';
-
+@import "../../vars.less";
+@import "~antd/dist/antd.less";
 
 @keyframes colors {
   0% {
     background-color: @yellow;
   }
+
   33% {
     background-color: @green;
   }
+
   66% {
     background-color: @blue;
   }
+
   100% {
     background-color: @pink;
   }
 }
 
-
 .circle {
-  width: 718px;
-  height: 718px;
+  align-items: center;
+  animation: colors 10s infinite alternate-reverse;
   background-color: @yellow;
   border-radius: 50%;
   display: flex;
   flex-flow: column nowrap;
+  height: 718px;
   justify-content: center;
-  align-items: center;
   text-align: center;
-
-  animation: colors 10s infinite alternate-reverse;
+  width: 718px;
 }

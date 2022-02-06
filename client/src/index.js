@@ -1,15 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Home from 'pages/Home'
-import UploadNotes from 'pages/UploadNotes'
-import Lobby from 'pages/Lobby'
-import Join from 'pages/Join'
-import Questions from 'pages/Questions'
-import Steven from 'containers/Steven'
+import Home from 'pages/Home';
+import UploadNotes from 'pages/UploadNotes';
+import Lobby from 'pages/Lobby';
+import Join from 'pages/Join';
+import Questions from 'pages/Questions';
+import Steven from 'containers/Steven';
 
-import './index.css'
+import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,5 +24,5 @@ ReactDOM.render(
       </Routes>
     </Router>
   </React.StrictMode>,
-  document.getElementById('root'),
-)
+  document.getElementById('root')
+);

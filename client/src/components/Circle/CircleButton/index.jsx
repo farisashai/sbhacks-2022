@@ -1,18 +1,17 @@
-import React from 'react';
+import React from 'react'
 import arrow from 'assets/arrow.svg'
-import circle from 'assets/create-circle.svg';
-
+import circle from 'assets/create-circle.svg'
 
 import './style.less'
 
-const CircleButton = ({text, onclick}) => {
+const CircleButton = ({ text, onclick }) => {
   return (
     <div className="button">
-        <button onClick={onclick}>{text}</button>
-        <img src={arrow} alt="arrow" />
-        <img className="create-circle" src={circle} alt="circle" />
+      <button>{text}</button>
+      <img src={arrow} alt="arrow" />
+      <img className="create-circle" src={circle} alt="circle" />
     </div>
-    )
-};
+  )
+}
 
-export default CircleButton;
+export default CircleButton
